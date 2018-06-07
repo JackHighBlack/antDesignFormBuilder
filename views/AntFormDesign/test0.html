@@ -1,0 +1,37 @@
+
+<html>
+<head>
+		<meta	http-equiv="Content-Type"	content="text/html;	charset=UTF-8">
+
+</head>
+<body>
+
+<input type="text" id="jsonVal">
+<button onclick= jsonVal_click()> 跳转到 test1</button>
+
+<script	type="text/javascript">
+function post(URL, PARAMS) {
+	var temp_form = document.createElement("form");
+	temp_form.action = URL;
+	temp_form.target = "_blank";
+	temp_form.method = "post";
+	temp_form.style.display = "none";
+	for (var x in PARAMS) {
+		var opt = document.createElement("textarea");
+		opt.name = x;
+		opt.value = PARAMS[x];
+		temp_form.appendChild(opt)
+	}
+	document.body.appendChild(temp_form);
+	temp_form.submit()
+}
+function jsonVal_click() {
+	var jsonVal = document.getElementById("jsonVal").value ;
+	post('/formdesign/test1', {jsonVal: jsonVal});
+}
+																
+</script>
+jsonVal:<br />
+			{{{.jsonVal}}}
+</body>
+</html>

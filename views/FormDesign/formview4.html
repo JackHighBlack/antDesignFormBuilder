@@ -1,0 +1,309 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="keywords" content="表单名称">
+<meta name="description" content="">
+<title>formview4</title>
+
+	<!--   
+	<script src="./node_modules/react/dist/react.js"></script>
+	<script src="./node_modules/react-dom/dist/react-dom.js"></script> 
+	<script src="./dist/antd.js"></script> -->	  
+	<script src="https://unpkg.com/react@15.x/dist/react.js	"></script>
+	<script src="https://unpkg.com/react-dom@15.x/dist/react-dom.js"></script>
+   	<script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script> 
+    <script src="https://unpkg.com/moment/min/moment-with-locales.js"></script>
+	
+	<script src="/static/js/AntDesign/dist/antd-with-locales.js"></script>
+	<link href="/static/js/AntDesign/dist/antd.css" rel="stylesheet"/>
+	<!-- 
+	<script src="/static/js/AntDesign/antd-init/antd.js"></script> 
+	<link href="/static/js/AntDesign/antd-init/antd.css" rel="stylesheet"/> -->
+
+	<!-- <script type="text/javascript"src="/static/FormDesign/js/jquery-1.7.2.min.js"></script> -->
+</head>
+<body class="wallpaper">
+
+ {{{substr .Str 0 8}}}
+
+<div id="example"></div>
+parameterDataAntStr :
+<<.parameterDataAntStr>>
+
+
+str123 : 11111111111111111
+
+<!-- <script type="text/babel">
+
+  const {Button }= antd;
+	const Example = (
+	   <div>
+		{{str2html .Str}}
+		</div>
+	);
+
+ReactDOM.render(
+ Example
+,  document.getElementById('example')
+);
+</script> -->
+
+<h2>example3 3333333</h2>
+ <div id="example3"></div>	
+  <script type="text/babel">
+const { Button } = antd;
+
+ReactDOM.render(
+	  <Button> 123</Button>
+   ,document.getElementById('example3')
+);
+  </script>
+  
+  <h2>Breadcrumb1</h2>
+	<div id="Breadcrumb1"></div>	
+  <script type="text/babel">	
+	const { Breadcrumb, Alert } = antd;
+ReactDOM.render(
+	  <Breadcrumb>
+    <Breadcrumb.Item>Home</Breadcrumb.Item>
+    <Breadcrumb.Item><a href="">Application Center</a></Breadcrumb.Item>
+    <Breadcrumb.Item><a href="">Application List</a></Breadcrumb.Item>
+    <Breadcrumb.Item>An Application</Breadcrumb.Item>
+  </Breadcrumb>
+   ,document.getElementById('Breadcrumb1')
+);
+  </script>
+  
+  
+  <h2>
+	Breadcrumb2 123
+</h2>
+<div id="Breadcrumb2">
+</div>
+<script type="text/babel">
+	const {
+		Breadcrumb,
+		Icon
+	} = antd;
+	ReactDOM.render(
+<Breadcrumb>
+    <Breadcrumb.Item href="">
+      <Icon type="home" />
+    </Breadcrumb.Item>
+    <Breadcrumb.Item href="">
+      <Icon type="user" />
+      <span>Application List</span>
+    </Breadcrumb.Item>
+    <Breadcrumb.Item>
+      Application
+    </Breadcrumb.Item>
+  </Breadcrumb>
+   ,document.getElementById('Breadcrumb2')
+);
+
+</script>
+
+
+
+
+<h2>
+	Menu1
+	</h2>
+
+<div id="Menu1"></div>
+<script type="text/babel">
+const { Menu, Dropdown, Icon } = antd;
+
+const menu = (
+  <Menu>
+    <Menu.Item>
+      <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">1st menu item</a>
+    </Menu.Item>
+    <Menu.Item>
+      <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">2nd menu item</a>
+    </Menu.Item>
+    <Menu.Item>
+      <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">3rd menu item</a>
+    </Menu.Item>
+  </Menu>
+);
+
+ReactDOM.render(
+  <Dropdown overlay={menu}>
+    <a className="ant-dropdown-link" href="#">
+      Hover me <Icon type="down" />
+    </a>
+  </Dropdown>
+   ,document.getElementById('Menu1')
+);
+
+</script>
+
+
+   <h2>
+	BasicForm1
+	</h2>
+
+<div id="BasicForm1"></div>
+<script type="text/babel">
+const { Form, Icon, Input, Button } = antd;
+const FormItem = Form.Item;
+
+function hasErrors(fieldsError) {
+  return Object.keys(fieldsError).some(field => fieldsError[field]);
+}
+
+class HorizontalLoginForm extends React.Component {
+  componentDidMount() {
+    // To disabled submit button at the beginning.
+    this.props.form.validateFields();
+  }
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        console.log('Received values of form: ', values);
+      }
+    });
+  }
+  render() {
+    const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = this.props.form;
+
+    // Only show error1 after a field is touched.
+    const userNameError = isFieldTouched('userName') && getFieldError('userName');
+    const passwordError = isFieldTouched('password') && getFieldError('password');
+    return (
+      <Form layout="inline" onSubmit={this.handleSubmit}>
+		 {{{str2html .Error1}}} 
+        
+          {getFieldDecorator('userName', {
+            rules: [{ required: true, message: 'Please input your username!' }],
+          })(
+            <Input  placeholder="Username" />
+          )}
+        </FormItem>
+		 {/* 这样就会被golang转码了有Zgotmpl */}
+        <FormItem
+			{{{str2html .Error2}}}
+        >
+          {getFieldDecorator('password', {
+            rules: [{ required: true, message: 'Please input your Password!' }],
+          })(
+            {{{str2html .Error3}}} 
+          )}
+        </FormItem>
+        <FormItem>
+          <Button
+            type="primary"
+            htmlType="submit"
+            disabled={hasErrors(getFieldsError())}
+          >
+            Log in
+          </Button>  {{{str2html .Error4}}} 
+        </FormItem>
+      </Form>
+    );
+  }
+}
+
+const WrappedHorizontalLoginForm = Form.create()(HorizontalLoginForm);
+
+ReactDOM.render(<WrappedHorizontalLoginForm />
+   ,document.getElementById('BasicForm1')
+);
+
+</script>
+
+
+<div id="container" class="container hide">
+
+=======
+}}}}}}> 3e05afe4919f10463a4ff9dba35baaad2d604f66
+</h1>
+      <form id="form1" class="form" action="/web/formview/57fb0f6b0cf21225460dfb23" method="post" name="form1">
+      <input id="INITTIME" name="INITTIME" value="1476081664630" type="hidden" /> 
+      <input id="FRMID" name="FRMID" autofill="" value="57fb0f6b0cf21225460dfb23" type="hidden" /> 
+      <input id="TMOUT" name="TMOUT_number" value="1476081663695" type="hidden" />
+	 
+	  
+      <div id="formHeader" class="info">
+        <h2>测试</h2>
+        <div>
+	Error1:{{{str2html .Error1}}} <br />
+	Error2:{{{.Error2}}} <br />
+	Error3:{{{.Error3}}} <br />
+          <p>脚本也挺有意思</p>
+=======
+          <p>脚本还是挺好玩的</p>
+}}}}}}> 3e05afe4919f10463a4ff9dba35baaad2d604f66
+        </div>
+      </div>
+      <ul id="fields" class="fields">
+      
+      </ul>
+	  </form>
+    
+</div>
+
+
+	<form data-reactroot="" class="ant-form ant-form-inline">
+		<div class="ant-row ant-form-item">
+			<div class="ant-form-item-control-wrapper">
+				<div class="ant-form-item-control">
+					<span class="ant-form-item-children">
+						<input type="text" placeholder="Username" value="" id="userName" data-__meta="[object Object]"
+						data-__field="[object Object]" class="ant-input">
+					</span>
+					<!-- react-empty: 7 -->
+				</div>
+			</div>
+		</div>
+		<div class="ant-row ant-form-item ant-form-item-with-help">
+			<div class="ant-form-item-control-wrapper">
+				<div class="ant-form-item-control has-error">
+					<span class="ant-form-item-children">
+						<span class="ant-input-affix-wrapper">
+							<span class="ant-input-prefix">
+								<i class="anticon anticon-lock" style="color: rgba(0, 0, 0, 0.247059);">
+								</i>
+							</span>
+							<input type="password" placeholder="Password" value="" id="password" data-__meta="[object Object]"
+							data-__field="[object Object]" class="ant-input">
+						</span>
+					</span>
+					<div class="ant-form-explain">
+						Please input your Password!
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ant-row ant-form-item">
+			<div class="ant-form-item-control-wrapper">
+				<div class="ant-form-item-control">
+					<span class="ant-form-item-children">
+						<button type="submit" class="ant-btn ant-btn-primary"  >
+							<span>
+								Log in
+							</span>
+						</button>
+						<!-- react-text: 23 -->
+						<!-- /react-text -->
+						<button type="button" class="ant-btn ant-btn-circle ant-btn-lg">
+							<span>
+								123456
+							</span>
+						</button>
+					</span>
+					<!-- react-empty: 26 -->
+				</div>
+			</div>
+		</div>
+	</form>
+
+
+
+</body>
+</html>

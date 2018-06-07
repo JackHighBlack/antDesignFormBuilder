@@ -1,0 +1,60 @@
+{
+  "FormItem": [
+    {
+      "colon": "colon",
+      "extra": "extra",
+      "label": "label",
+      "labelCol": "labelCol",
+      "type": {
+        "type": "input",
+        "attr": {
+          "prefix": "{<Icon type=\"user\" style='{{ color: 'rgba(0,0,0,.25)' }}"
+        }
+      },
+      "name": "userName  ",
+      "id": "id1",
+      "getFieldDecorator": {
+        "rules": {
+          "enum": " 'enum' ",
+          "len": "10",
+          "max": "100",
+          "message": " ' Please input your username! '",
+          "min": "6",
+          "pattern": "pattern",
+          "required": "<true>",
+          "transform": "function(value) => transformedValue:any",
+          "type": " 'string' ",
+          "validator": "function(rule, value, callback)",
+          "whitespace": "<false>"
+        }
+      }
+    },
+    {
+      "colon": "colon",
+      "extra": "extra",
+      "label": "label",
+      "labelCol": "labelCol",
+      "type": {
+        "type": "input",
+        "attr": {}
+      },
+      "name": "password",
+      "id": "id2",
+      "getFieldDecorator": {
+        "rules": {
+          "enum": "enum",
+          "len": "number",
+          "max": "number",
+          "message": "message",
+          "min": "min",
+          "pattern": "pattern",
+          "required": "<true>",
+          "transform": "function(value) => transformedValue:any",
+          "type": "string",
+          "validator": "function(rule, value, callback)",
+          "whitespace": "<false>"
+        }
+      }
+    }
+  ]
+}

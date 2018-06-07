@@ -1,0 +1,182 @@
+
+
+<!DOCTYPE	html	PUBLIC	"-//W3C//DTD	HTML	4.01	Transitional//EN"	"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta	http-equiv="Content-Type"	content="text/html;	charset=UTF-8">
+<meta	name="keywords"	content="表单名称">
+<meta	name="description"	content="">
+<!--	<meta	http-equiv="Content-Security-Policy"	content="upgrade-insecure-requests">	这个有点坑了	-->
+<title>formview3</title>
+<!--		<script	src="https://unpkg.com/react@15.x/dist/react.js	"></script>
+	<script	src="https://unpkg.com/react-dom@15.x/dist/react-dom.js"></script>
+				<script	src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>	
+				<script	src="https://unpkg.com/moment/min/moment-with-locales.js"></script>	-->
+	
+	<script	src="/static/js/AntDesign/others/react.js	"></script>
+	<script	src="/static/js/AntDesign/others/react-dom.js"></script>
+				<script	src="/static/js/AntDesign/others/babel.min.js"></script>	
+				<script	src="/static/js/AntDesign/others/moment-with-locales.js"></script>
+	<!--	/static/js/AntDesign/others/	-->
+	<script	src="/static/js/AntDesign/dist/antd-with-locales.js"></script>
+	<link	href="/static/js/AntDesign/dist/antd.css"	rel="stylesheet"/>
+</head>
+<body	class="wallpaper">
+
+
+
+<h3>parameterDataAntStr	返回的htmlAnt:
+{{{.parameterDataAntStr}}}		</h3>
+<br	/>
+<h2>结果</h2>
+<div	id="example"></div>
+<script	type="text/babel">
+		const	{Button,Icon,Affix 	}=	antd;
+	const	Example	=	(
+					<div>
+		{{{str2html .parameterDataAntStr}}}				
+		</div>
+	);
+
+ReactDOM.render(
+	Example
+,		document.getElementById('example')
+);
+</script>
+
+<h2>Ant	Design	-	一个	UI	设计语言</h2>
+	<div	id="example3"></div>	
+		<script	type="text/babel">
+const	{	Button	}	=	antd;
+//import	{	Button	}	from		"antd.js";
+
+ReactDOM.render(
+            
+			<Button>	Ant	Design	-	一个	UI	设计语言</Button>
+			,document.getElementById('example3')
+);
+		</script>
+		
+<h2>Ant	Design	-	测试</h2>
+	<div	id="example4"></div>	
+		<script	type="text/babel">
+const	{	Button	}	=	antd;
+//import	{	Button	}	from		"antd.js";
+
+ReactDOM.render( 
+			<div>
+			<Button ghost={true} type="default" id="primary">htmlAnt Button</Button>
+			</div>
+			,document.getElementById('example4')
+);
+		</script>		
+		
+
+
+<div	id="container"	class="container	hide">
+
+=======
+}}}}}}>	3e05afe4919f10463a4ff9dba35baaad2d604f66
+</h1>
+						<form	id="form1"	class="form"	action="/web/formview/57fb0f6b0cf21225460dfb23"	method="post"	name="form1">
+						<input	id="INITTIME"	name="INITTIME"	value="1476081664630"	type="hidden"	/>	
+						<input	id="FRMID"	name="FRMID"	autofill=""	value="57fb0f6b0cf21225460dfb23"	type="hidden"	/>	
+						<input	id="TMOUT"	name="TMOUT_number"	value="1476081663695"	type="hidden"	/>
+		
+			
+						<div	id="formHeader"	class="info">
+								<h2>测试</h2>
+								<div>
+
+										<p>脚本也挺有意思</p>
+=======
+										<p>脚本还是挺好玩的</p>
+}}}}}}>	3e05afe4919f10463a4ff9dba35baaad2d604f66
+								</div>
+						</div>
+						<ul	id="fields"	class="fields">
+						
+						</ul>
+			</form>
+				
+</div>
+
+
+
+<!--	<script	type="text/javascript"src="/static/FormDesign/js/head.load.min.js"></script>
+<script	type="text/javascript">
+var	isEmbed=false,F={"DISSHARE":""};
+var	RULE={FIELDSRULE:[]};
+var	ADVPERM={};
+
+//var	M	=	{	FRMNM:	"表单名称",	DESC:	"",	LANG:	"cn",	LBLAL:	"T",	CFMTYP:	"T",	CFMMSG:	"提交成功。",	SDMAIL:	"0",	CAPTCHA:	"1",	IPLMT:	"0",	SCHACT:	"0",	INSTR:	"0",	ISPUB:	"1"	};
+//var	F	=	[{"LBL":"单行文本","TYP":"text","FLDSZ":"m","REQD":"1","UNIQ":"0","LAYOUT":"leftHalf","SCU":"pub"},{"LBL":"多行文本","LAYOUT":"leftHalf","TYP":"textarea","FLDSZ":"s","REQD":"0","UNIQ":"0","SCU":"pub","MIN":"","MAX":"","DEF":"","INSTR":"","CSS":""},{"LBL":"多选框","TYP":"checkbox","LAY":"one","REQD":"0","SCU":"pub","INSTR":"","CSS":"","ITMS":[{"VAL":"选项	1","CHKED":"0"},{"VAL":"选项	2","CHKED":"0"},{"VAL":"选项	3","CHKED":"0"}]},{"LBL":"日期","TYP":"date","REQD":"0","UNIQ":"0","SCU":"pub","FMT":"ymd","DEF":"","INSTR":"","CSS":""}];
+var	M	=	{{{.formData}}};	
+var	F	=	{{{.parameterData}}}	
+								var	fieldsLimit	=	150;
+								var	goodsNumber	=	60;
+								var	imageNumber	=	10;
+								var	LVL	=	4;
+		var	fieldsLimit	=	150;
+								var	goodsNumber	=	60;
+								var	imageNumber	=	10;
+								var	LVL	=	4;
+
+								var	isForTemplate	=	false;
+								M.GID	=	"23423werfwetwe"	;
+
+var	isForMobile=false;
+var	IMAGEURL="#",FILEIMAGEEDITSTYLE="@100w_90Q";
+head.js("/static/FormDesign/js/jquery-1.7.2.min.js",'/static/FormDesign/js/lang-cn.js?v=20160929','/static/FormDesign/js/address-cn.js?v=20160929',
+"/static/FormDesign/js/utils.js?v=20160929",
+"/static/FormDesign/js/formview.js?v=20160929");
+
+var	_hmt	=	_hmt	||	[];
+(function()	{
+		var	hm	=	document.createElement("script");
+		hm.src	=	"//hm.baidu.com/hm.js?4e93cf0b43bbb28b7446cd782a148db3";
+		var	s	=	document.getElementsByTagName("script")[0];	
+		s.parentNode.insertBefore(hm,	s);
+})();
+</script>	-->
+<!--	{{{.formData}}}		-->
+<br	/>
+parameterDataStr	:
+{{{.parameterDataStr}}}	
+<br	/>
+<br	/>
+<br	/>
+<br	/>
+<br	/>
+<br	/>
+<br	/>
+<br	/>
+<br	/>
+<br	/>
+<br	/>
+<br	/>
+<br	/>
+<br	/>
+<br	/>
+<br	/>
+<br	/>
+<br	/>
+<br	/>
+<br	/>
+<br	/>
+<br	/>
+<br	/>
+<br	/>
+<br	/>
+<br	/>
+<br	/>
+<br	/>
+<br	/>
+<br	/>
+<br	/>
+<br	/>
+<br	/>
+<br	/>
+<br	/>
+</body>
+</html>

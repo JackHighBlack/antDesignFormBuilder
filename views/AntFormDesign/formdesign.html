@@ -1,0 +1,1299 @@
+<!DOCTYPE	html	PUBLIC	"-//W3C//DTD	HTML	4.01	Transitional//EN"	"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+		<meta	http-equiv="Content-Type"	content="text/html;	charset=UTF-8">
+		
+				<meta	name="keywords"	content="kmonkey,王延领,在线表单,自定义表单,表单设计器">
+				<meta	name="description"	content="表单设计器，支持文本、图片、地图、单选、多选，下拉等多种输入类型，我是准备把它做成一个超级通用的一个插件。让不懂编程的人也能很轻松的设计出想要的表单。继续加油code吧">
+				<meta	name="renderer"	content="webkit">
+<title>表单设计</title>
+<link	type="text/css"	rel="stylesheet"	href="/static/AntFormDesign/css/formview.css?v=20160929"/>
+
+<link	type="text/css"	rel="stylesheet"	href="/static/AntFormDesign/css/common.css?v=20160929"	/>
+<link	type="text/css"	rel="stylesheet"	href="/static/AntFormDesign/css/jquery-ui-1.9.2.custom.css"/>
+<link	type="text/css"	rel="stylesheet"	href="/static/AntFormDesign/css/widgets.css?v=20160929"	/>
+<link	type="text/css"	rel="stylesheet"	href="/static/AntFormDesign/css/jquery.mCustomScrollbar.min.css?v=20160929"/>
+<link	type="text/css"	rel="stylesheet"	href="/static/AntFormDesign/css/formbuild.css?v=20160929"/>
+</head>
+<body>
+
+
+
+</div>
+
+<div	id="container">
+<!--	left	state	-->
+<div	id="left">
+
+<div	id="addFields"	class="overhide">
+	<h3	class="fields-group">通用字段</h3>
+	<ul	id="col1">
+	
+			<li	id="drag_text2"	ftype="text2">
+				<!--	ftype	起到了点入和拖动的效果	-->
+				<a	id="sl2"	class="btn-field"	title="适用于填写简短的文字内容，身份证号、银行卡号、工号等请使用此类型。"	href="#">
+					<i	class="iconfont">&#xe643;</i>单行123
+				</a>
+			</li>
+		
+	
+			<li	id="drag_text"	ftype="text"><a	id="sl"	class="btn-field"	title="适用于填写简短的文字内容，身份证号、银行卡号、工号等请使用此类型。"	href="#"><i	class="iconfont">&#xe643;</i>单行文本</a></li>
+	</ul>
+	<ul	id="col2">
+		<li	id="drag_number"	ftype="number"><a	id="nb"	class="btn-field"	title="适用于填写涉及到数学运算的数字，身份证号、银行卡号、工号等请使用单行文本。"	href="#"><i	class="iconfont">&#xe640;</i>数字</a></li>
+		<li	id="drag_checkboxes"	ftype="checkbox"><a	id="cb"	class="btn-field"	title="适用于在几个选项里选多个，如投票"	href="#"><i	class="iconfont">&#xe64a;</i>多选框</a></li>
+	</ul>
+	
+	<h3	class="fields-group">AntDesign</h3>
+	<ul	id="col1">
+		<li	ftype="antRow"><a	id="Row"	class="btn-field"	title="Row"	href="#"><i	class="iconfont">&#xe652;</i>Row</a></li>
+		<li	ftype="antButton"><a	id="antButton"	class="btn-field"	title="antButton"	href="#"><i	class="iconfont">&#xe652;</i>antButton</a></li>				
+	
+		<li	ftype="antIcon"><a	id="antIcon"	class="btn-field"	title="antIcon"	href="#"><i	class="iconfont">&#xe652;</i>antIcon</a></li>				
+	    <li	ftype="antAffix"><a	id="antAffix"	class="btn-field"	title="antAffix"	href="#"><i	class="iconfont">&#xe652;</i>antAffix</a></li>				
+	    <li	ftype="antBreadcrumb"><a	id="antBreadcrumb"	class="btn-field"	title="antBreadcrumb"	href="#"><i	class="iconfont">&#xe652;</i>antBreadcrumb</a></li>				
+		
+		<li	ftype="antDropdown"><a	id="antDropdown"	class="btn-field"	title="antDropdown"	href="#"><i	class="iconfont">&#xe652;</i>antDropdown</a></li>				
+		
+	</ul>
+	
+	<ul	id="col2">
+		<li	ftype="antFormItem"><a	id="antFormItem"	class="btn-field"	title="antFormItem"	href="#"><i	class="iconfont">&#xe652;</i>antFormItem</a></li>
+
+	</ul>
+	
+	
+	
+</div><!--	addFields	-->
+</div>
+<!--	left	end	-->
+<!--	middle	state	-->
+<div	id="middle">
+	<div	class="forms">
+		<div	id="fbForm"	class="form	form-focused">
+			<h2	id="fTitle"></h2>
+			<div	id="fDescription"></div>
+		</div>
+	</div>
+	<div	id="nofields"	class="notice	hide"	style="margin:30px	18px	0px	28px">
+	<div	id="addFromButton"	style="cursor:pointer;">
+	<h2	class="color-red">没有字段!</h2>
+	<a	href="#">表单中没有字段，点击或拖动左边的组件添加字段。</a>
+	</div>
+	</div>
+	<!--表单绘制区域-->
+
+	<ul	id="fields"	class="fields">
+	</ul>
+
+	<!--表单绘制区域-->
+	<div	class="formButtons	hide"	id="formButtons">
+	<table	style="margin:auto;font-size:1.0em"><tr>
+	<td	style="border:none;"><a	class="btn	left"	id="preview"	target="_blank"	href="/formdesign/formview">预览</a></td>
+	<td	style="border:none;"><a	class="btn	blue	left"	id="saveForm"	href="#">保存</a></td>
+	
+	<td	style="border:none;"><a	class="btn	left"	id="preview2"	>预览传值</a></td>
+	<td	style="border:none;"><a	class="btn	left"	id="preview5"	>预览 preview5</a></td>		<!--	JS写在 formbuilderForm.js中			function	post(URL,	PARAMS)写在formdesign.html中-->
+	<!--	<td><a	class="btn	green	left"	id="btnAddField2"	href="#"><b></b>添加新字段</a></td>	-->
+	</tr></table>
+	</div>
+</div>
+<!--	middle	end	-->
+<!--	right	state-->
+<div	id="right">
+<!--		-->
+<div	class="notice	hide"	style="margin-top:30px;border:none"	id="noFieldSelected">
+	<h3><b>没有选择字段</b></h3>
+	<p>请先在右侧选择需要编辑的字段，然后在此编辑字段的属性。</p>
+</div>
+<div	id="fieldProperties"	class="hide">	<!--	field	properties	-->
+<h3	class="property-title">表单属性</h3>
+<div	id="allPropsContainer">
+<ul	id="allProps">
+	<!--	<li	class="num"	id="liPos">1.</li>	-->
+	<li	id="plabel">
+		<label	class="desc"	for="lbl">字段标签
+		</label>
+		<textarea	id="lbl"	name="LBL"	class="xxl"	rows="2"></textarea>
+	</li>
+	
+	<li	id="pAid">
+		<label	class="desc"	for="Aid">字段id
+		</label>
+		<textarea	id="Aid"	name="Aid"	class="xxl"	rows="2"></textarea>
+	</li>
+
+
+	
+	<li	id="ptype"	class="left	half">
+		<label	class="desc"	for="type">字段类型	
+			<a	href="#"	class="help"	title="关于字段类型"	rel="可以修改表单保存之前添加字段的类型。">(?)</a>
+		</label>
+		<select	id="type"	name="TYP"	class="xxl">
+			<optgroup	label="标准类型">
+				<option	value="text">单行文本</option>
+				<option	value="text2">单行文本123</option>
+				<option	value="textarea">多行文本</option>
+				<option	value="radio">单选框</option>
+				<option	value="number">数字</option>
+				<option	value="checkbox">多选框</option>
+				<option	value="dropdown">下拉框</option>
+			</optgroup>
+			<optgroup	label="常用类型">
+				<option	value="email">电子邮箱</option>
+				<option	value="address">地址</option>
+				<option	value="map">地理位置</option>
+				<option	value="phone">手机</option>
+				<option	value="name">姓名</option>
+				<option	value="file">上传文件</option>
+				<option	value="date">日期</option>
+				<option	value="time">时间</option>
+				<option	value="url">网址</option>
+				<option	value="likert">组合单选框</option>
+				<option	value="dropdown2">多级下拉框</option>
+				<option	value="image">图片</option>
+				<option	value="goods">配图商品</option>
+				<option	value="goodsnoimg">无图商品</option>
+				
+			</optgroup>
+		</select>
+	</li>
+			
+	<!-- 	FormItem  Start -->	
+<li class="left half hide" id="pFormItemname">
+	<label class="desc" for="FormItemname">
+		FormItem name
+		<a href="#" class="help" title="FormItem name" rel="设置控件的名称和Dom Id(不可以重复,不能包含特殊符号,且是英文,)">
+			(?)
+		</a>
+	</label>
+	<input id="FormItemname" name="FormItemname" class="xxl">
+</li>
+
+<li class="left half hide" id="pFormItemcolon">
+	<label class="desc" for="FormItemcolon">
+		FormItem colon
+		<a href="#" class="help" title="FormItem colon" rel="配合 label 属性使用，表示是否显示 label 后面的冒号">
+			(?)
+		</a>
+	</label>
+	<select id="FormItemcolon" name="FormItemcolon" class="xxl">
+		<option value="true">
+			true
+		</option>
+		<option value="false">
+			false
+		</option>
+	</select>
+</li>
+<li class="left half hide" id="pFormItemextra">
+	<label class="desc" for="FormItemextra">
+		FormItem extra
+		<a href="#" class="help" title="FormItem extra" rel="额外的提示信息，和 help 类似，当需要错误信息和提示文案同时出现时，可以使用这个。">
+			(?)
+		</a>
+	</label>
+	<input id="FormItemextra" name="FormItemextra" class="xxl">
+</li>
+<li class="left half hide" id="pFormItemlabel">
+	<label class="desc" for="FormItemlabel">
+		FormItem label
+		<a href="#" class="help" title="FormItem label" rel="label 标签的文本">
+			(?)
+		</a>
+	</label>
+	<input id="FormItemlabel" name="FormItemlabel" class="xxl">
+</li>
+<li class="left half hide" id="pFormItemlabelCol">
+	<label class="desc" for="FormItemlabelCol">
+		FormItem labelCol
+		<a href="#" class="help" title="FormItem labelCol" rel="label 标签布局，同 <Col> 组件，设置 spanoffset 值，如 {span: 3, offset: 12} 或 sm: {span: 3, offset: 12}">
+			(?)
+		</a>
+	</label>
+	<input id="FormItemlabelCol" name="FormItemlabelCol" class="xxl">
+</li>
+<li class="left half hide" id="pFormItemwrapperCol">
+	<label class="desc" for="FormItemwrapperCol">
+		FormItem wrapperCol
+		<a href="#" class="help" title="FormItem wrapperCol" rel="需要为输入控件设置布局样式时，使用该属性，用法同 labelCol">
+			(?)
+		</a>
+	</label>
+	<input id="FormItemwrapperCol" name="FormItemwrapperCol" class="xxl">
+</li>
+<li class="hide" id="pFormItemtype">
+	<label class="desc" for="FormItemtype">
+		FormItem type
+		<a href="#" class="help" title="FormItem type" rel="(输入框的类型先完成Input和Button 默认是Input,如果是Button就不用 getFieldDecorator)">
+			(?)
+		</a>
+	</label>
+	<input id="FormItemtype" name="FormItemtype" class="xxl">
+</li>
+
+
+	
+	<li	id="pRules"	class="clear hide bggray">
+	<fieldset>
+	<legend>校验规则
+		<a	href="#"	class="help	hide"	title="校验规则 title"	rel="校验规则 rel">(?)</a>
+	</legend>
+	<ul	id="rulesList">
+
+<li id="pRulesenum">
+	<label class="desc" for="Rulesenum">
+		Rules enum
+		<a href="#" class="help" title="Rules enum" rel="枚举类型">
+			(?)
+		</a>
+	</label>
+	<input id="Rulesenum" name="Rulesenum" class="xxl">
+</li>
+<li id="pRuleslen">
+	<label class="desc" for="Ruleslen">
+		Rules len
+		<a href="#" class="help" title="Rules len" rel="字段长度">
+			(?)
+		</a>
+	</label>
+	<input id="Ruleslen" name="Ruleslen" class="xxl">
+</li>
+<li id="pRulesmax">
+	<label class="desc" for="Rulesmax">
+		Rules max
+		<a href="#" class="help" title="Rules max" rel="最大长度">
+			(?)
+		</a>
+	</label>
+	<input id="Rulesmax" name="Rulesmax" class="xxl">
+</li>
+<li id="pRulesmessage">
+	<label class="desc" for="Rulesmessage">
+		Rules message
+		<a href="#" class="help" title="Rules message" rel="校验文案">
+			(?)
+		</a>
+	</label>
+	<input id="Rulesmessage" name="Rulesmessage" class="xxl">
+</li>
+<li id="pRulesmin">
+	<label class="desc" for="Rulesmin">
+		Rules min
+		<a href="#" class="help" title="Rules min" rel="最小长度">
+			(?)
+		</a>
+	</label>
+	<input id="Rulesmin" name="Rulesmin" class="xxl">
+</li>
+<li id="pRulespattern">
+	<label class="desc" for="Rulespattern">
+		Rules pattern
+		<a href="#" class="help" title="Rules pattern" rel="正则表达式校验">
+			(?)
+		</a>
+	</label>
+	<input id="Rulespattern" name="Rulespattern" class="xxl">
+</li>
+<li id="pRulesrequired">
+	<label class="desc" for="Rulesrequired">
+		Rules required
+		<a href="#" class="help" title="Rules required" rel="是否必选">
+			(?)
+		</a>
+	</label>
+	<select id="Rulesrequired" name="Rulesrequired" class="xxl">
+		<option value="<false>">
+			false
+		</option>
+		<option value="<true>">
+			true
+		</option>
+	</select>
+</li>
+<li id="pRulestransform">
+	<label class="desc" for="Rulestransform">
+		Rules transform
+		<a href="#" class="help" title="Rules transform" rel="校验前转换字段值">
+			(?)
+		</a>
+	</label>
+	<input id="Rulestransform" name="Rulestransform" class="xxl">
+</li>
+
+<li id="pRulestype">  <!--  取消class="left half hide" -->
+	<label class="desc" for="Rulestype">
+		Rules type
+		<a href="#" class="help" title="Rules type" rel="内建校验类型，可选项">
+			(?)
+		</a>
+	</label>
+	<select id="Rulestype" name="Rulestype" class="xxl">
+		<option value="'string'">
+			'string'
+		</option>
+		<option value="'number'">
+			'number'
+		</option>
+		<option value="'boolean'">
+			'boolean'
+		</option>
+		<option value="'method'">
+			'method'
+		</option>
+		<option value="'regexp'">
+			'regexp'
+		</option>
+		<option value="'integer'">
+			'integer'
+		</option>
+		<option value="'float'">
+			'float'
+		</option>
+		<option value="'array'">
+			'array'
+		</option>
+		<option value="'object'">
+			'object'
+		</option>
+		<option value="'enum'">
+			'enum'
+		</option>
+		<option value="'date'">
+			'date'
+		</option>
+		<option value="'url'">
+			'url'
+		</option>
+		<option value="'hex'">
+			'hex'
+		</option>
+		<option value="'email'">
+			'email'
+		</option>
+	</select>
+</li>
+
+<li id="pRulesvalidator">
+	<label class="desc" for="Rulesvalidator">
+		Rules validator
+		<a href="#" class="help" title="Rules validator" rel="自定义校验（注意，callback 必须被调用）">
+			(?)
+		</a>
+	</label>
+	<input id="Rulesvalidator" name="Rulesvalidator" class="xxl">
+</li>
+<li id="pRuleswhitespace">
+	<label class="desc" for="Ruleswhitespace">
+		Rules whitespace
+		<a href="#" class="help" title="Rules whitespace" rel="必选时，空格是否会被视为错误">
+			(?)
+		</a>
+	</label>
+	<select id="Ruleswhitespace" name="Ruleswhitespace" class="xxl">
+		<option value="false">
+			false
+		</option>
+		<option value="true">
+			true
+		</option>
+	</select>
+</li>
+
+	</ul>
+
+	</fieldset>
+	</li>
+
+<!-- 	FormItem  End -->				
+
+	
+	<li	class="right	half	hide"	id="pfldsize">
+		<label	class="desc"	for="fldsize">字段长度
+			<a	href="#"	class="help"	title="关于字段长度"	rel="用于限定字段输入框的长度（“多行文本”字段限定输入框高度）。">(?)</a>
+		</label>
+		<select	id="fldsize"	name="FLDSZ"		class="xxl">
+			<option	value="s">短</option>
+			<option	value="m">中</option>
+			<option	value="xxl">长</option>
+		</select>
+	</li>
+	
+	<li	 class="hide" id="pContent">
+		<label	class="desc"	for="Content">字段包含内容
+		</label>
+		<textarea	id="Content"	name="Content"	class="xxl"	rows="2"></textarea>
+	</li>
+	
+	
+<!-- 	antButton  Start -->
+			<li	class="left	half	hide"	id="pButtontype">
+		<label	class="desc"	for="Buttontype">设置按钮类型
+			<a	href="#"	class="help"	title="设置按钮类型"	rel="设置按钮类型">(?)</a>
+		</label>
+		<select	id="Buttontype"	name="Buttontype"		class="xxl">
+			<option	value="default">default</option>	<!--	default		可以不设	-->
+			<option	value="primary">primary</option>
+			<option	value="dashed">dashed</option>	
+			<option	value="danger">danger</option>		
+		</select>
+	</li>
+	
+	<li	class="left	half	hide"	id="pButtonsize">
+		<label	class="desc"	for="Buttonsize">设置按钮大小
+			<a	href="#"	class="help"	title="设置按钮大小"	rel="设置按钮大小">(?)</a>
+		</label>
+		<select	id="Buttonsize"	name="Buttonsize"		class="xxl">
+			<option	value="default">default</option>
+			<option	value="small">small</option>
+			<option	value="large">large</option>
+		</select>
+	</li>
+
+	<li	class="left	half	hide"	id="pButtonshape">
+		<label	class="desc"	for="Buttonshape">设置设置按钮形状
+			<a	href="#"	class="help"	title="设置设置按钮形状"	rel="设置设置按钮形状">(?)</a>
+		</label>
+		<select	id="Buttonshape"	name="Buttonshape"		class="xxl">
+			<option	value="default">button</option>
+			<option	value="circle">circle</option>
+		</select>
+	</li>
+	
+		<li	class="left	half	hide"	id="pButtonicon">
+		<label	class="desc"	for="Buttonicon">设置按钮的图标类型
+			<a	href="#"	class="help"	title="设置按钮的图标类型"	rel="设置按钮的图标类型">(?)</a>
+		</label>
+		<select	id="Buttonicon"	name="Buttonicon"		class="xxl">
+			<option	value="question">question</option>
+			<option	value="question-circle-o">question-circle-o</option>
+			<option	value="question-circle">question-circle</option>
+			<option	value="plus">plus</option>
+			<option	value="plus-circle-o">plus-circle-o</option>
+			<option	value="plus-circle">plus-circle</option>
+			<option	value="pause">pause</option>
+			<option	value="pause-circle-o">pause-circle-o</option>
+			<option	value="pause-circle">pause-circle</option>
+			<option	value="minus">minus</option>
+			<option	value="minus-circle-o">minus-circle-o</option>
+			<option	value="minus-circle">minus-circle</option>
+			<option	value="plus-square">plus-square</option>
+			<option	value="plus-square-o">plus-square-o</option>
+			<option	value="minus-square">minus-square</option>
+			<option	value="minus-square-o">minus-square-o</option>
+			<option	value="info">info</option>
+			<option	value="info-circle-o">info-circle-o</option>
+			<option	value="info-circle">info-circle</option>
+			<option	value="exclamation">exclamation</option>
+			<option	value="exclamation-circle-o">exclamation-circle-o</option>
+			<option	value="exclamation-circle">exclamation-circle</option>
+			<option	value="close">close</option>
+			<option	value="close-circle">close-circle</option>
+			<option	value="close-circle-o">close-circle-o</option>
+			<option	value="close-square">close-square</option>
+			<option	value="close-square-o">close-square-o</option>
+			<option	value="check">check</option>
+			<option	value="check-circle">check-circle</option>
+			<option	value="check-circle-o">check-circle-o</option>
+			<option	value="check-square">check-square</option>
+			<option	value="check-square-o">check-square-o</option>
+			<option	value="clock-circle-o">clock-circle-o</option>
+			<option	value="clock-circle">clock-circle</option>
+			<option	value="warning">warning</option>
+			<option value="android">android</option>
+			<option value="android-o">android-o</option>
+			<option value="apple">apple</option>
+			<option value="apple-o">apple-o</option>
+			<option value="windows">windows</option>
+			<option value="windows-o">windows-o</option>
+			<option value="ie">ie</option>
+			<option value="chrome">chrome</option>
+			<option value="github">github</option>
+			<option value="aliwangwang">aliwangwang</option>
+			<option value="aliwangwang-o">aliwangwang-o</option>
+			<option value="dingding">dingding</option>
+			<option value="dingding-o">dingding-o</option>
+			<option value="weibo-square">weibo-square</option>
+			<option value="weibo-circle">weibo-circle</option>
+			<option value="taobao-circle">taobao-circle</option>
+			<option value="html5">html5</option>
+			<option value="weibo">weibo</option>
+			<option value="twitter">twitter</option>
+			<option value="wechat">wechat</option>
+			<option value="youtube">youtube</option>
+			<option value="alipay-circle">alipay-circle</option>
+			<option value="taobao">taobao</option>
+			<option value="skype">skype</option>
+			<option value="qq">qq</option>
+			<option value="medium-workmark">medium-workmark</option>
+			<option value="gitlab">gitlab</option>
+			<option value="medium">medium</option>
+			<option value="linkedin">linkedin</option>
+			<option value="google-plus">google-plus</option>
+			<option value="dropbox">dropbox</option>
+			<option value="facebook">facebook</option>
+			<option value="codepen">codepen</option>
+			<option value="amazon">amazon</option>
+			<option value="google">google</option>
+			<option value="codepen-circle">codepen-circle</option>
+			<option value="alipay">alipay</option>
+			<option value="ant-design">ant-design</option>
+			<option value="aliyun">aliyun</option>
+			<option value="zhihu">zhihu</option>
+			<option value="slack">slack</option>
+			<option value="slack-square">slack-square</option>
+			<option value="behance">behance</option>
+			<option value="behance-square">behance-square</option>
+			<option value="dribbble">dribbble</option>
+			<option value="dribbble-square">dribbble-square</option>
+			<option value="instagram">instagram</option>
+			<option value="yuque">yuque</option>
+
+		</select>
+	</li>
+	
+	
+<li class="left half hide" id="pButtonloading">
+	<label class="desc" for="Buttonloading">
+		设置按钮载入状态
+		<a href="#" class="help" title="设置按钮载入状态" rel="设置按钮载入状态">
+			(?)
+		</a>
+	</label>
+	<select id="Buttonloading" name="Buttonloading" class="xxl">
+		<option value="false">
+			false
+		</option>
+		<option value="true">
+			true
+		</option>
+	</select>
+</li>
+	
+<li class="left half hide" id="pButtonghost">
+	<label class="desc" for="Buttonghost">
+		幽灵属性，使按钮背景透明，版本 2.7 中增加
+		<a href="#" class="help" title="幽灵属性，使按钮背景透明，版本 2.7 中增加" rel="幽灵属性，使按钮背景透明，版本 2.7 中增加">
+			(?)
+		</a>
+	</label>
+	<select id="Buttonghost" name="Buttonghost" class="xxl">
+		<option value="false">
+			false
+		</option>
+		<option value="true">
+			true
+		</option>
+	</select>
+</li>	
+	
+<li class="left half hide" id="pButtonhtmlType">
+	<label class="desc" for="ButtonhtmlType">
+		设置 button 原生的 type 值，可选值请参考 HTML 标准
+		<a href="#" class="help" title="设置 button 原生的 type 值，可选值请参考 HTML 标准" rel="设置 button 原生的 type 值，可选值请参考 HTML 标准">
+			(?)
+		</a>
+	</label>
+	<select id="ButtonhtmlType" name="ButtonhtmlType" class="xxl">
+		<option value="button">
+			button
+		</option>
+		<option value="submit">
+			submit
+		</option>
+		<option value="reset">
+			reset
+		</option>
+	</select>
+</li>
+
+<li class="left half hide" id="pButtontarget">
+	<label class="desc" for="Buttontarget">
+		相当于 a 链接的 target 属性，href 存在时生效
+		<a href="#" class="help" title="相当于 a 链接的 target 属性，href 存在时生效" rel="相当于 a 链接的 target 属性，href 存在时生效">
+			(?)
+		</a>
+	</label>
+	<input id="Buttontarget" name="Buttontarget" class="xxl">
+</li>	
+	
+	
+<!-- 	antButton  End -->	
+	
+
+<!-- 	antIcon  Start -->	
+
+<li class="left half hide" id="pIconspin">
+	<label class="desc" for="Iconspin">
+		是否有旋转动画
+		<a href="#" class="help" title="是否有旋转动画" rel="是否有旋转动画">
+			(?)
+		</a>
+	</label>
+	<select id="Iconspin" name="Iconspin" class="xxl">
+		<option value="false">
+			false
+		</option>
+		<option value="true">
+			true
+		</option>
+	</select>
+</li>
+<li class="left half hide" id="pStyle">
+	<label class="desc" for="style">
+		设置图标的样式，例如 fontSize 和 color
+		<a href="#" class="help" title="设置图标的样式，例如 fontSize 和 color" rel="设置图标的样式，例如 fontSize 和 color">
+			(?)
+		</a>
+	</label>
+	<input id="style" name="style" class="xxl">
+</li>
+<li class="left half hide bggray" id="pIcontype" >
+	<label class="desc" for="Icontype">
+		图标类型
+		<a href="#" class="help" title="图标类型" rel="图标类型">
+			(?)
+		</a>
+	</label>
+<!-- 	<input id="Icontype" name="Icontype" class="xxl"> -->
+	<select	id="Icontype"	name="Icontype"		class="xxl">
+			<option	value="question">question</option>
+			<option	value="question-circle-o">question-circle-o</option>
+			<option	value="question-circle">question-circle</option>
+			<option	value="plus">plus</option>
+			<option	value="plus-circle-o">plus-circle-o</option>
+			<option	value="plus-circle">plus-circle</option>
+			<option	value="pause">pause</option>
+			<option	value="pause-circle-o">pause-circle-o</option>
+			<option	value="pause-circle">pause-circle</option>
+			<option	value="minus">minus</option>
+			<option	value="minus-circle-o">minus-circle-o</option>
+			<option	value="minus-circle">minus-circle</option>
+			<option	value="plus-square">plus-square</option>
+			<option	value="plus-square-o">plus-square-o</option>
+			<option	value="minus-square">minus-square</option>
+			<option	value="minus-square-o">minus-square-o</option>
+			<option	value="info">info</option>
+			<option	value="info-circle-o">info-circle-o</option>
+			<option	value="info-circle">info-circle</option>
+			<option	value="exclamation">exclamation</option>
+			<option	value="exclamation-circle-o">exclamation-circle-o</option>
+			<option	value="exclamation-circle">exclamation-circle</option>
+			<option	value="close">close</option>
+			<option	value="close-circle">close-circle</option>
+			<option	value="close-circle-o">close-circle-o</option>
+			<option	value="close-square">close-square</option>
+			<option	value="close-square-o">close-square-o</option>
+			<option	value="check">check</option>
+			<option	value="check-circle">check-circle</option>
+			<option	value="check-circle-o">check-circle-o</option>
+			<option	value="check-square">check-square</option>
+			<option	value="check-square-o">check-square-o</option>
+			<option	value="clock-circle-o">clock-circle-o</option>
+			<option	value="clock-circle">clock-circle</option>
+			<option	value="warning">warning</option>
+			<option value="android">android</option>
+			<option value="android-o">android-o</option>
+			<option value="apple">apple</option>
+			<option value="apple-o">apple-o</option>
+			<option value="windows">windows</option>
+			<option value="windows-o">windows-o</option>
+			<option value="ie">ie</option>
+			<option value="chrome">chrome</option>
+			<option value="github">github</option>
+			<option value="aliwangwang">aliwangwang</option>
+			<option value="aliwangwang-o">aliwangwang-o</option>
+			<option value="dingding">dingding</option>
+			<option value="dingding-o">dingding-o</option>
+			<option value="weibo-square">weibo-square</option>
+			<option value="weibo-circle">weibo-circle</option>
+			<option value="taobao-circle">taobao-circle</option>
+			<option value="html5">html5</option>
+			<option value="weibo">weibo</option>
+			<option value="twitter">twitter</option>
+			<option value="wechat">wechat</option>
+			<option value="youtube">youtube</option>
+			<option value="alipay-circle">alipay-circle</option>
+			<option value="taobao">taobao</option>
+			<option value="skype">skype</option>
+			<option value="qq">qq</option>
+			<option value="medium-workmark">medium-workmark</option>
+			<option value="gitlab">gitlab</option>
+			<option value="medium">medium</option>
+			<option value="linkedin">linkedin</option>
+			<option value="google-plus">google-plus</option>
+			<option value="dropbox">dropbox</option>
+			<option value="facebook">facebook</option>
+			<option value="codepen">codepen</option>
+			<option value="amazon">amazon</option>
+			<option value="google">google</option>
+			<option value="codepen-circle">codepen-circle</option>
+			<option value="alipay">alipay</option>
+			<option value="ant-design">ant-design</option>
+			<option value="aliyun">aliyun</option>
+			<option value="zhihu">zhihu</option>
+			<option value="slack">slack</option>
+			<option value="slack-square">slack-square</option>
+			<option value="behance">behance</option>
+			<option value="behance-square">behance-square</option>
+			<option value="dribbble">dribbble</option>
+			<option value="dribbble-square">dribbble-square</option>
+			<option value="instagram">instagram</option>
+			<option value="yuque">yuque</option>
+
+		</select>
+</li>
+
+
+<li	id="pDropdownItemlist"	class="clear hide bggray">
+	<fieldset>
+	<legend>AntDesign Dropdown 选择项
+		<a	href="#"	class="help	hide"	title="关于选择项"	rel="此属性用于指定有哪些选择项可以提供给用户选择。利用旁边的增加或删除按钮或以增加或删除选择项。对于下拉框在没有指定默认选中项的情况下将自动选中第一项。">(?)</a>
+	</legend>
+	<ul	id="itemList"> <!-- 后台JS 进行监控赋值  createItems  itemList 修改 DEFFLD 中的方法可以将添加下拉框和选项进行配合，完成API的赋值工作，前端显示不完美 -->
+	</ul>
+
+	</fieldset>
+</li>
+<!-- 	antIcon  End -->		
+	
+<!-- 	antAffix  Start -->	
+<li class="left half hide" id="pAffixoffsetBottom">
+	<label class="desc" for="AffixoffsetBottom">
+		距离窗口底部达到指定偏移量后触发
+		<a href="#" class="help" title="距离窗口底部达到指定偏移量后触发" rel="距离窗口底部达到指定偏移量后触发">
+			(?)
+		</a>
+	</label>
+	<input id="AffixoffsetBottom" name="AffixoffsetBottom" class="xxl">
+</li>
+<li class="left half hide" id="pAffixoffsetTop">
+	<label class="desc" for="AffixoffsetTop">
+		距离窗口顶部达到指定偏移量后触发
+		<a href="#" class="help" title="距离窗口顶部达到指定偏移量后触发" rel="距离窗口顶部达到指定偏移量后触发">
+			(?)
+		</a>
+	</label>
+	<input id="AffixoffsetTop" name="AffixoffsetTop" class="xxl">
+</li>
+<li class="left half hide" id="pAffixtarget">
+	<label class="desc" for="Affixtarget">
+		设置 Affix 需要监听其滚动事件的元素，值为一个返回对应 DOM 元素的函数
+		<a href="#" class="help" title="设置 Affix 需要监听其滚动事件的元素，值为一个返回对应 DOM 元素的函数"
+		rel="设置 Affix 需要监听其滚动事件的元素，值为一个返回对应 DOM 元素的函数">
+			(?)
+		</a>
+	</label>
+	<input id="Affixtarget" name="Affixtarget" class="xxl">
+</li>
+<li class="left half hide" id="pAffixonChange">
+	<label class="desc" for="AffixonChange">
+		固定状态改变时触发的回调函数
+		<a href="#" class="help" title="固定状态改变时触发的回调函数" rel="固定状态改变时触发的回调函数">
+			(?)
+		</a>
+	</label>
+	<input id="AffixonChange" name="AffixonChange" class="xxl">
+</li>
+<!-- 	antAffix  End -->	
+
+
+	
+	<li	class="right	half"	id="playout">
+		<label	class="desc"	for="layout">字段布局
+			<a	href="#"	class="help	hide"	title="关于字段布局"	rel="此属性仅对复选框和单选框类型的字段有效，用于定义复选框或单选框的排列方式。其中自动排列是指按一个接一个的方式进行排列。">(?)</a>
+		</label>
+		<select	id="layout"	name="LAY"		class="xxl">
+			<option	value="one">一列</option>
+			<option	value="two">二列</option>
+			<option	value="three">三列</option>
+			<option	value="oneByOne">自动排列</option>
+		</select>
+	</li>
+
+	<li	class="right	half"	id="pdateformat">
+		<label	class="desc"	for="dateformat">日期格式
+			<a	href="#"	class="help	hide"	title="关于日期格式"	rel="此属性用于指定日期的输入格式。YYYY代表年，MM代表月，DD代表日。">(?)</a>
+		</label>
+		<select	id="dateformat"	name="FMT"	class="xxl">
+			<option	value="ymd"	selected="selected">YYYY	-	MM	-	DD</option>
+			<option	value="mdy">MM	/	DD	/	YYYY</option>
+			<option	value="dmy">DD	/	MM	/	YYYY</option>
+		</select>
+	</li>
+
+	<li	class="right	half"	id="pphoneformat">
+		<label	class="desc"	for="phoneformat">电话格式
+			<a	href="#"	class="help	hide"	title="关于电话格式"	rel="此属性用于指定电话的输入格式。支持普通的电话号码输入和“区号-总机-分机”的座机号码输入。">(?)</a>
+		</label>
+		<select	id="phoneformat"	name="FMT"	class="xxl">
+			<option	value="mobile"	selected="selected">手机</option>
+			<option	value="tel">座机</option>
+		</select>
+	</li>
+	
+	<li	class="right	half"	id="pnameformat">
+		<label	class="desc"	for="nameformat">姓名格式
+			<a	href="#"	class="help	hide"	title="关于姓名格式"	rel="此属性用于指定姓名的输入格式。支持普通的姓名格式和带称呼的加长格式。">(?)</a>
+		</label>
+		<select	id="nameformat"	name="FMT"	class="xxl">
+			<option	value="short"	selected="selected">普通</option>
+			<option	value="extend">加长</option>
+		</select>
+	</li>
+
+	<li	class="right	half"	id="pmoneyformat">
+		<label	class="desc"	for="moneyfomat">货币格式</label>
+		<select	id="moneyfomat"	name="FMT"	class="xxl">
+			<option	value="yen">¥	人民币/日元</option>
+			<option	value="dollars"	>$	美元</option>
+			<option	value="pounds"	>£	英镑</option>
+			<option	value="euros"	>€	欧元</option>
+		</select>
+	</li>
+
+	<li	class="left	half"	id="pN">
+		<label	class="desc"	for="N">层级</label>
+		<select	id="N"	name="pN"	class="xxl">
+			<option	value="2"	selected="selected">2</option>
+			<option	value="3"	>3</option>
+			<option	value="4"	>4</option>
+		</select>
+	</li>
+	
+	<li	class="clear	noheight"></li>
+	<li	id="plikert"	class="bggray">
+	<fieldset>
+		<legend>行标签
+			<a	href="#"	class="help	hide"	title="关于行标签"	rel="此属性用于指定组合单选框中表示组合类别的标签。">(?)</a>
+		</legend>
+		<ul	id="likertRows"></ul>
+	</fieldset>
+	<fieldset>
+		<legend>列标签
+			<a	href="#"	class="help	hide"	title="关于列标签"	rel="此属性用于指定组合单选框中表示级次的标签。">(?)</a>
+		</legend>
+		<ul	id="likertCols"></ul>
+		<div	class="center">
+			<a	id="btnLikertPredefine"	href="#"	class="btn	gray">批量编辑</a>
+		</div>
+	</fieldset>
+	</li>
+	<li	class="clear	noheight"></li>
+	
+	<li	id="pitems"	class="clear hide bggray">
+	<fieldset>
+	<legend>选择项 pitems 下拉框
+		<a	href="#"	class="help	hide"	title="关于选择项"	rel="此属性用于指定有哪些选择项可以提供给用户选择。利用旁边的增加或删除按钮或以增加或删除选择项。对于下拉框在没有指定默认选中项的情况下将自动选中第一项。">(?)</a>
+	</legend>
+	<ul	id="itemList">
+	</ul>
+
+	<div	id="pitems_radio"	class="center">
+		<a	id="btnItemsPredefine"	href="#"	class="btn	gray">批量编辑</a>
+	</div>
+	<div	id="pitems_batchedit"	class="center">
+		<a	id="btnItemsBatch"	href="#"	class="btn	gray">批量编辑</a>
+	</div>
+	</fieldset>
+	</li>
+	
+	<li	id="pgoods"	class="clear	bggray">
+	<fieldset>
+	<legend>商品列表
+		<a	href="#"	class="help	hide"	title="关于商品列表"	rel="此属性用于指定在表单中显示的商品。如果是图片商品，图片长宽比例请保持1:1，文件体积需要在500KB以内，支持.jpg格式。提示：按住商品列表拖动可以排序哦。">(?)</a>
+	</legend>
+	<ul	id="goodsList"	class="clearfix">
+	</ul>
+
+	<div	id="pgoods_radio"	class="center	add-goods">
+		<form	name="goodsUploadForm"	class="add-image-btn"	action=""	method="POST"	enctype="multipart/form-data"	style="height:35px;padding:5px	0px;vertical-align:	middle;">
+		<a	id="btnAddGoods"	title="添加配图商品"	class="btn	gray"	href="#"><span	style="display:block;">+	添加配图商品</span>
+		<input	id="fileToUpload"		title="添加配图商品"	name="fileToUpload"	class="file-prew"	title="支持jpg、jpeg、png格式，文件小于500K"	type="file"	size="3"	accept="image/jpeg,image/png,image/bmp,image/gif"/></a>
+		<!--	<a	id="btnGoodsPredefine"	href="#"	title="添加常用配图商品"	style="display:inline-block;padding-bottom:20px;vertical-align:	middle;color:	#3670af;text-decoration:	underline;">添加常用配图商品</a>	-->
+		</form>
+		<div	id="addNoImgGoods"	class="add-goods-btn"	style="height:35px;padding:5px	0px;vertical-align:	middle;">
+				<a	id="btnAddNoImgGoods"	title="添加无图商品"	class="btn	gray"><span>+	添加无图商品</span></a>
+		</div>
+		<div	class="clear">
+				<input	id="goodsForBuy"	value="1"	name="FBUY"	type="checkbox">
+				<label	for="goodsForBuy">商品用于向供应商询价</label>
+				<a	href="#"	class="help	hide"	title="关于商品用于向供应商询价"	rel="当勾选此选项时，将由制表人确信数量，填表人根据数量填写单价。主要用于向供应商询价，供应商填写表单进行报价的场景。">(?)</a><br>
+		</div>
+	</div>
+	</fieldset>
+	</li>
+	
+	<li	id="pimage">
+		<form	name="uploadImageForm"	action=""	method="POST"	enctype="multipart/form-data"	style="padding:5px	0px;">
+		<label	class="desc"	for="uploadImage">上传图片<a	href="#"	class="help	hide"	title="关于图片"	rel="在表单中添加图片显示，支持gif格式，每张图片最大2M。">(?)</a>
+		</label>
+		<a	class="btn	gray	filewrap">
+		<span>上传图片</span>
+		<input	type="file"	id="uploadImage"		name="uploadImage"	title="支持jpg、jpeg、png格式，文件小于500K"	accept="image/jpeg,image/png,image/bmp,image/gif"/>
+		</a>
+		</form>
+	</li>
+
+	<li	class="left	half	clear"	id="poptions">
+	<fieldset>
+		<legend>设置</legend>
+		<ul>
+		<li	id="popt_required">
+		<input	id="reqd"	name="REQD"	type="checkbox"	value="1"	/>
+		<label	for="reqd">必须输入</label>
+		<a	href="#"	class="help	hide"	title="关于必须输入"	rel="强制填表人该字段必须输入，否则将不能提交表单。<a	href='#'	class='video	help'	videosrc='images/videos/2-1.mp4'><i	class='iconfont	icon	green2'	>&#xe64d;</i>观看视频说明</a>">(?)</a>
+		</li>
+		<li	id="popt_unique">
+		<input	id="uniq"	name="UNIQ"	type="checkbox"	value="1"	/>	
+		<label	for="uniq">不许重复</label>		
+		<a	href="#"	class="help"	title="关于不许重复"	rel="用于保证字段输入值的唯一性，适用于如手机号、QQ号等需要保证唯一性的输入值。">(?)</a>
+		</li>
+		
+		
+		
+		<li	id="popt_hidenum">
+		<input	id="hidenum"	name="HDNM"	type="checkbox"	value="1"/>
+		<label	for="hidenum">隐藏数字</label>
+		<a	href="#"	class="help	hide"	title="关于隐藏数字"	rel="在单选框下方通常都有一个数字用于标识此选项的分值，此属性用于指定是否隐藏此数字。">(?)</a>
+		</li>
+		
+		<li	id="popt_authcode">
+		<div>
+		<input	id="internal"	name="INTERNAL"	type="checkbox"	value="1"/>
+		<label	for="internal">启用国际手机</label>	<a	href="#"	class="help	hide"	title="关于启用国际手机号"	rel="启用后可以向全球200多个国家和地区发送短信，请先联系客户咨询使用详情。<a	href='help/smsprice.html'	target='_blank'>查看资费明细</a>">(?)</a>
+		</div>
+		
+		<input	id="authcode"	name="AUTH"	type="checkbox"	value="1"/>
+		<label	for="authcode">验证码</label>	<a	href="#"	class="help	hide"	title="关于手机验证码"	rel="启用验证码需要满足以下两个条件：1、签名通过审核（可联系在线客服审核）；2、有可用短信量（短信需要单独购买）；<a	href='help/smsprice.html'	target='_blank'>查看资费明细</a>">(?)</a>
+		
+		<div	id="signcnt"	class="hide">
+		<input	id="sign"	name="SIGN"	placeholder="短信签名"	type="text"	maxlength="16"	style="width:60px;"	/>
+		<a	id="btnSignSumbmit"	target="_blank"	href="/web/formview/5606403b0cf2f6fe39b1965d"	class="btn	no-icon	btn-blue	small">提交审核</a>
+		</div>
+		</li>
+		
+		
+			
+		<li	id="popt_dismark">
+		<input	id="chkDismark"	name="DISMK"	type="checkbox"	value="1"/>
+		<label	for="chkDismark">禁止手动标注</label>
+		<a	href="#"	class="help	hide"	title="禁止手动标注"	rel="默认情况下，地理位置支持自动定位和手动标注。您可以勾选此选项来禁用手动标注，满足某些需要真实确认填表人位置的场景。">(?)</a>
+		</li>
+		
+		</ul>
+	</fieldset>
+	</li>
+
+	
+
+	<li	class="clear	noheight"></li>
+
+	<li	id="prange"	class="bggray">
+	<fieldset>
+		<legend>范围
+			<a	href="#"	class="help"	title="关于范围"	rel="数值型字段用于限定数值的范围；文本型字段用于限定字数的多少。">(?)</a>
+		</legend>
+		<div>
+			<div	class="half	left">
+				<label	class="desc	min	not-bold"	for="min">最小值</label>
+				<input	class="xxl	number"	id="min"	name="MIN"	type="text"	value=""	/>
+			</div>
+			<div	class="half	right">
+				<label	class="desc	max	not-bold"	for="max">最大值</label>
+				<input	class="xxl	number"	id="max"	name="MAX"	type="text"	value=""	/>
+			</div>
+		</div>
+	</fieldset>
+	</li>
+	
+	<!--	为了尽早简单，此功能仅在支持关系的版本中显示
+	
+	<li	id="pconfine">
+	<fieldset>
+		<legend>关联
+			<a	href="#"	class="help"	title="关于关联"	rel="可以通过关联指定此字段的值只能来源于某个其它表单的数据。">(?)</a>
+		</legend>
+		<div	id="pconfine1"	class="highlight-blue"	style="margin-bottom:	3px;">
+			<label><input	type="checkbox"	value="1"	name="MAT"	id="chkMatch"	/>	指定数据来源并自动匹配
+			<a	href="#"	class="help"	title="关于自动匹配"	rel="类似搜索引擎的自动提示效果，根据输入的值与指定的表单和字段进行匹配，实现自动完成输入。<a	target='_blank'	href='/rs/help/formbuilder.html#t51'>查看样例</a>">(?)</a></label>
+			<div	id="divMatchContainer"	style="padding-bottom:	5px;"	class="hide">
+				<label	class="desc"	for="selMatchFrm">来源表单</label>
+				<select	name="MATFRM"	class="xxl"	id="selMatchFrm"></select>
+				<label	class="desc	min"	for="selMatchFld">来源字段</label>
+				<select	name="MATFLD"	class="xxl"	id="selMatchFld"></select>
+			</div>
+		</div>
+		<div	id="pconfine2"	class="highlight-blue">
+			<label><input	type="checkbox"	value="1"	name="ACMP"	id="chkAutoComp"	/>	根据匹配数据自动带出值
+			<a	href="#"	class="help"	title="关于自动带出值"	rel="依据自动匹配的字段，当匹配到数据后，自动带出此条数据的其它字段的值作为此字段的值。如在客户管理类的表单中，可以将客户名称设置为“指定数据来源并自动匹配”，在此可以自动带出对应的联系人或联系方式等。<a	target='_blank'	href='/rs/help/formbuilder.html#t32'>查看样例</a>
+			<i>注意：<br/>
+			1、若要进行此设置，表单中必须至少有一个设置了“指定数据来源并自动匹配”的字段。目前只有文本框支持自动匹配的设置。<br/>
+			2、为了数据安全，需要登录用户才能使用此功能。<i>">(?)</a></label>
+			<div	id="divAutoCompContainer"	style="padding-bottom:	5px;"	class="hide">
+				<label	class="desc"	for="selAutoCompSrcFld">自动匹配字段</label>
+				<select	name="ACMPSRCFLD"	class="xxl"	id="selAutoCompSrcFld"></select>
+				<label	class="desc	min"	for="selAutoCompFld">需要带出的字段</label>
+				<select	name="ACMPFLD"	class="xxl"	id="selAutoCompFld"></select>
+			</div>
+		</div>
+	</fieldset>
+	</li>
+	
+		-->
+
+	
+	
+	<li	id="pdefval_text">
+		<label	class="desc"	for="defval_text">默认值
+			<a	href="#"	class="help	hide"	title="关于默认值"	rel="在用户访问表单时，此值将作为默认值显示在输入框中。如果不需要默认值，请将此处设置为空。">(?)</a>
+		</label>
+		<input	id="defval_text"	name="DEF"	class="xxl"	type="text"value=""	maxlength="255"	/>
+	</li>
+	
+	<li	id="pdefval_number">
+		<label	class="desc"	for="defval_number">默认值
+			<a	href="#"	class="help	hide"	title="关于默认值"	rel="在用户访问表单时，此值将作为默认值显示在输入框中。如果不需要默认值，请将此处设置为空。">(?)</a>
+		</label>
+		<input	id="defval_number"	name="DEF"	class="xxl"	type="text"value=""	maxlength="255"	/>
+	</li>
+
+	<li	id="pdefval_date">
+		<label	class="desc"	for="defval_date">默认值
+			<a	href="#"	class="help	hide"	title="关于默认值"	rel="在用户访问表单时，此值将作为默认值显示在输入框中。默认值可以是'YYYY-MM-DD'格式的固定日期，也可以是如下一些动态日期：'today'，	'+n	days'，	'+n	weeks'，	'+n	months'，	'-n	days'，	'-n	weeks'，	'-n	months'，其中n为正整数，如+2	days。对于动态日期，将根据用户访问表单时的时间自动转换为对应的日期。如果不需要默认值，请将此处设置为空。">(?)</a>
+		</label>
+		<input	id="defval_date"	name="DEF"	class="xxl"	type="text"	value=""	maxlength="255"	/>
+	</li>
+	
+	<li	id="pdefval_time">
+		<label	class="desc"	for="defval_time">默认值
+			<a	href="#"	class="help	hide"	title="关于默认值"	rel="在用户访问表单时，此值将作为默认值显示在输入框中。默认值可以是'HH:MM'格式的固定时间，也可以是如下一些动态时间：'now'，	'+n	minutes'，	'+n	hours'，	'-n	minutes'，	'-n	hours'，其中n为正整数，如+30	minutes。对于动态时间，将根据用户访问表单时的时间自动转换为对应的时间。如果不需要默认值，请将此处设置为空。">(?)</a>
+		</label>
+		<input	id="defval_time"	name="DEF"	class="xxl"	type="text"	value=""	maxlength="255"	/>
+	</li>
+
+	<li	id="pdefval_phone_tel"		class="overhide	clear	hide">
+		<label	class="desc"	for="pdefval_phone_tel">默认值
+			<a	href="#"	class="help	hide"	title="关于默认值"	rel="在用户访问表单时，此值将作为默认值显示在输入框中。如果不需要默认值，请将此处设置为空。">(?)</a>
+		</label>
+		<div	class="oneline	tel	reduction">
+		<span>
+					<input	id="defval_phone_tel_1"	class="input	tel"	maxlength="4"	size="4"	type="text"/>
+					<label	for="defval_phone_tel_1">区号</label>
+				</span>
+				<span>	-	</span>
+				<span>
+					<input	id="defval_phone_tel_2"		class="input	tel"	maxlength="8"	size="8"	type="text"/>
+					<label	for="defval_phone_tel_2">总机</label>
+				</span>
+				<span>	-	</span>
+				<span>
+					<input	id="defval_phone_tel_3"	class="input	tel"	maxlength="4"	size="4"	type="text"/>
+					<label	for="defval_phone_tel_3">分机</label>
+				</span>
+				<input	id="defval_phone_tel"	type="hidden"	size="18"	name="DEF"	/>
+		</div>
+	</li>
+	
+	<li	id="pdefval_phone_mobile"	class="clear	hide">
+		<label	class="desc"	for="defval_phone_mobile">默认值
+			<a	href="#"	class="help	hide"	title="关于默认值"	rel="在用户访问表单时，此值将作为默认值显示在输入框中。如果不需要默认值，请将此处设置为空。">(?)</a>
+		</label>
+		<input	id="defval_phone_mobile"	name="DEF"	class="m"	type="text"	maxlength="18"/>
+	</li>
+	
+	<li	id="pdefval_addr">
+		<label	class="desc"	for="defval_country">默认值
+			<a	href="#"	class="help	hide"	title="关于默认值"	rel="在用户访问表单时，此值将作为默认值显示在输入框中。如果不需要默认值，请将此处设置为空。">(?)</a>
+		</label>
+		<select	id="defval_province"	name="DEF_PROVINCE"	class="s"></select>
+		<select	id="defval_city"	name="DEF_CITY"	class="s"><option>市</option></select>
+		<select	id="defval_zip"	name="DEF_ZIP"	class="s"><option>区/县</option></select>
+	</li>
+
+	<li	id="psection"	class="clear">
+		<label	class="desc"	for="secdesc">分隔描述
+			<a	href="#"	class="help	hide"	title="关于分隔描述"	rel="请在此处添加对分隔符的描述，如果不需要描述可以清空。">(?)</a>
+		</label>
+		<textarea	class="xxl"	rows="5"	id="secdesc"	name="SECDESC"></textarea>
+	</li>
+	<li	id="phtml"	class="clear">
+		<label	class="desc"	for="html">HTML内容
+			<a	href="#"	class="help	hide"	title="关于HTML内容"	rel="如果您需要在表单上显示HTML内容，只支持显示型HTML（如p,a,div等），不支持输入型HTML（如input,select,radio等），请在此处输入相应HTML代码。<a	href='help/formbuilder.html#t31'	target='_blank'>如何插入图片和链接？</a>">(?)</a>
+		</label>
+		<textarea	class="xxl"	rows="5"	id="html"	name="HTML"></textarea>
+	</li>
+	
+	<li	id="pinstruct"	class="clear">
+		<label	class="desc"	for="instruct">字段说明	
+			<a	href="#"	class="help"	title="关于字段说明"	rel="对字段进行解释，帮助填表人进行理解和输入，并在字段右侧显示。">(?)</a>
+		</label>
+		<textarea	class="xxl"	rows="3"	id="instruct"	name="INSTR"></textarea>
+	</li>
+	<li	class="clear	noheight"></li>
+	
+	<li	id="playout"	class="bggray">
+		<label	class="desc"	for="layout">字段宽度（仅填表时可见）
+			<a	href="#"	class="help	hide"	title="字段宽度"	rel="让多个字段并列显示在同一行（仅适用于PC端）。<a	href='#'	class='video	help'	videosrc='images/videos/2-1-2.mp4'><i	class='iconfont	icon	green2'	>&#xe64d;</i>观看视频说明</a><i>注意：设置的宽度在设计模式不可见，仅在查看表单时才能看到效果。</i>">(?)</a>
+		</label>
+		<select	class="xxl"	id="selLayout"	name="LAYOUT">
+		<option	value="">充满整行</option>
+		<option	value="leftHalf">整行宽度的1/2</option>
+		<option	value="third">整行宽度的1/3</option>
+		<option	value="quarter">整行宽度的1/4</option>
+		</select>
+	</li>
+	<li	id="pexprop"	class="hide">
+		<label	class="desc"	for="css">扩展属性</label>
+		<input	id="exprop"	class="xxl"	type="text"	name="EX"	value=""	maxlength="1024"/>
+		<!--
+			20160821	by	xiangjuntao
+			1.字段的扩展属性不对外开放，仅内部人员使用；
+			2.扩展属性是一个JSON对象
+			3.目前支持的JSON属性为:{matfld:"F1,F2"}
+			matfld:关联查询时下拉框中可以带出的其它字段名；
+			
+			-->
+	</li>
+	<!--	
+	<li	style="overflow:hidden;padding:10px	0px	10px	20px;">
+		<a	href="#"	class="btn	btn-blue	icon-plus	left"	title="复制当前字段"	id="btnDup">复制1</a>
+		<a	href="#"	class="btn	btn-red	bg-blue	icon-reduce	left"	title="删除当前字段"	id="btnDel">删除1</a>
+		<a	href="#"	class="btn	btn-blue	icon-plus	left"	style="width:70px"	title="添加字段"	id="btnAddField">添加新字段1</a>
+	</li>
+		-->
+		
+	<li	class="clear	noheight"></li>
+</ul>
+</div>
+
+</div>
+<!--	end	field	properties	-->
+
+
+
+
+<!--	form	properties	-->
+<div	id="formProperties">
+		<h3	class="property-title">表单属性</h3>
+		<ul	id="allFormPerperties"	>
+	<li>
+		<label	for="formName"	class="desc">表单名称		</label>
+		<input	id="formName"	name="FRMNM"	class="xxl"	maxlength="64"	type="text"/>
+	</li>
+		<li	class="clear">
+				<label	for="desc"	class="desc">描述	<a	href="#"	class="help	hide"	title="关于描述"	rel="用于表单的描述、说明或解释，同时描述内容支持HTML。<a	href='help/formbuilder.html#t31'	target='_blank'>利用HTML标记插入图片和链接</a>。">(?)</a></label>
+				<textarea	id="desc"	name="DESC"	class="xxl"	rows="3"	placeholder="表单描述"></textarea>
+			</li>
+			<li>
+				<label	class="desc"	for="labelAlign">标签对齐方式
+				</label>
+		<select	id="labelAlign"	name="LBLAL"	class="xxl">
+			<option	value="T">上对齐</option>
+			<option	value="L">左对齐</option>
+			<option	value="R">右对齐</option>
+		</select>
+	</li>
+	<li>
+				<label	class="desc"	for="labelAlign">多列操作
+				</label>
+		<select	id="labelAlign"	name="LBLAL"	class="xxl">
+			<option	value="T">单列</option>
+			<option	value="L">两列</option>
+			<option	value="R">三列</option>
+		</select>
+	</li>
+	<li>
+			<label	class="desc"	for="labelAlign">提交后跳转选项</label>
+			<ul>
+					<li	class="left">
+						<input	id="confirmType_text"	name="CFMTYP"	value="T"	checked="checked"	type="radio"/>
+						<label	for="confirmType_text">显示文本</label>
+						<a	href="#"	class="help	hide"	title="关于显示文本"	rel="表单提交成功后，将显示下面文本框内设定的文字。<a	href='#'	class='video	help'	videosrc='images/videos/2-4-2-2.mp4'><i	class='iconfont	icon	green2'	>&#xe64d;</i>观看视频说明</a>">(?)</a>
+					</li>
+	
+					<li	class="right">
+						<input	id="confirmType_url"	name="CFMTYP"	value="U"	type="radio"/>
+						<label	for="confirmType_url">跳转至网页</label>
+						<a	href="#"	class="help	hide"	title="关于跳转至网页"	rel="表单提交成功后，将自动跳转到下面文本框内设定的网址。<a	href='#'	class='video	help'	videosrc='images/videos/2-4-2-1.mp4'><i	class='iconfont	icon	green2'	>&#xe64d;</i>观看视频说明</a>">(?)</a>
+					</li>
+					<li	class="clear"	style="padding-top:	5px;">
+		<textarea	id="confirmMsg_text"	name="CFMMSG"	class="xxl	hide"	rows="3">Thank	you.	Your	entry	has	been	successfully	submitted.</textarea>
+		<input	id="confirmMsg_url"	name="CFMURL"	class="xxl	hide"	type="text"	placeholder="http://"	/>
+		</li>
+			</ul>
+	</li>
+
+	</ul>
+</div>		<!--	form	properties	end	-->
+</div>		<!--	right	end	-->
+</div>
+<!--	container	end	-->
+
+<div	class="hide">
+	<input	id="itemselectbtn"	value="选择文件"	type="button"/>
+</div>
+
+
+</div><!--	container	end	-->
+<div	id="overlay"	class="overlay	hide"></div>
+<div	id="lightBox"	class="lightbox	hide">
+	<div	id="lbContent"	class="lbcontent"></div>
+</div>
+<div	id="status"	class="status	hide"><div	id="y"	class="y"	style="top:0xp;left:0px">
+<div	id="statusText"	class="statusText">正在处理...</div>
+</div></div>
+<span	id="helpTip"	class="helpTip	hide"><b></b><em></em></span>
+<script	type="text/javascript">
+		function	post(URL,	PARAMS)	{	
+											var	temp_form	=	document.createElement("form");						
+												temp_form.action	=	URL;						
+												temp_form.target	=	"_blank";
+												temp_form.method	=	"post";						
+												temp_form.style.display	=	"none";	for	(var	x	in	PARAMS)	{	var	opt	=	document.createElement("textarea");						
+																opt.name	=	x;						
+																opt.value	=	PARAMS[x];						
+																temp_form.appendChild(opt);						
+												}						
+												document.body.appendChild(temp_form);						
+												temp_form.submit();					
+								}	
+
+		/*function	preview2_click()	{	
+											post('${contextPath}/analyse/detail.do',{carNum	:carNum,ids:refIds});就可以了
+								}	*/
+</script>
+<script	type="text/javascript"	src="/static/AntFormDesign/js/head.load.min.js"></script>
+<script	type="text/javascript">
+//var	M={FRMNM:"表单名称123",DESC:"",LANG:"cn",LBLAL:"T",CFMTYP:"T",CFMMSG:"提交成功。",SDMAIL:"0",CAPTCHA:"1",IPLMT:"0",SCHACT:"0",INSTR:"0",ISPUB:"1"}
+//var	F=[];
+var	M={"FRMNM":"表单名称123","DESC":"","LANG":"cn","LBLAL":"T","CFMTYP":"T","CFMMSG":"提交成功。","SDMAIL":"0","CAPTCHA":"1","IPLMT":"0","SCHACT":"0","INSTR":"0","ISPUB":"1","GID":"","HEIGHT":553}
+//var	F=[{"LBL":"单行文本2","TYP":"text2","FLDSZ":"m","REQD":"0","UNIQ":"0","LAYOUT":"leftHalf","SCU":"pub"},{"LBL":"单行文本1","TYP":"text","FLDSZ":"m","REQD":"0","UNIQ":"0","LAYOUT":"leftHalf","SCU":"pub","ID":"123"},{"LBL":"多行文本","TYP":"textarea","FLDSZ":"s","REQD":"0","UNIQ":"0","SCU":"pub","MIN":"","MAX":"","DEF":"","INSTR":"","CSS":""}];
+//var	F	=	[{"LBL":"单行文本1234","TYP":"text","FLDSZ":"m","REQD":"1","UNIQ":"0","LAYOUT":"leftHalf","SCU":"pub"},{"LBL":"多行文本","LAYOUT":"leftHalf","TYP":"textarea","FLDSZ":"s","REQD":"0","UNIQ":"0","SCU":"pub","MIN":"","MAX":"","DEF":"","INSTR":"","CSS":""},{"LBL":"多选框","TYP":"checkbox","LAY":"one","REQD":"0","SCU":"pub","INSTR":"","CSS":"","ITMS":[{"VAL":"选项	1","CHKED":"0"},{"VAL":"选项	2","CHKED":"0"},{"VAL":"选项	3","CHKED":"0"}]},{"LBL":"日期","TYP":"date","REQD":"0","UNIQ":"0","SCU":"pub","FMT":"ymd","DEF":"","INSTR":"","CSS":""}];
+var	F	=	[];		
+var	Ant=[];		
+var	fieldsLimit=150;
+var	goodsNumber=60;
+var	imageNumber=10;
+var	LVL=4;
+
+
+var	isForTemplate=false;
+M.GID=M.GID	||	'';
+var	resRoot="#",GOODSIMAGEURL="http://goodsimages.jsform.com/",IMAGESURL="#",GOODSIMAGESTYLE="@1e_200w_200h_1c_0i_1o_90Q_1x";
+IMGBUCKET="kmonkey";
+head.js("/static/AntFormDesign/js/jquery-1.7.2.min.js",
+		"/static/AntFormDesign/js/jquery-ui-1.8.24.custom.min.js",
+		"/static/AntFormDesign/js/wangEditor.min.js?v=20160929",
+		"/static/AntFormDesign/js/ajaxfileupload.js?v=20160929",
+		"/static/AntFormDesign/js/plupload.full.min.js?v=20160929",
+		"/static/AntFormDesign/js/directfileupload.js?v=20160929",
+		"/static/AntFormDesign/js/utils.js?v=20160929",
+		"/static/AntFormDesign/js/widgets.js?v=20160929",
+		"/static/AntFormDesign/js/jquery.mCustomScrollbar.min.js?v=20160929",
+		"/static/AntFormDesign/js/jquery.mousewheel.min.js?v=20160929",
+		"/static/AntFormDesign/js/formbuilderForm.js?v=20160929",
+		"/static/AntFormDesign/js/address-cn.js?v=20160929");
+</script>
+</body>
+</html>

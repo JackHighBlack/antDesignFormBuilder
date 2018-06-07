@@ -1,0 +1,37 @@
+{
+    "Form": {
+        "Attr": {
+            "hideRequiredMark": "", 
+            "layout": "", 
+            "onSubmit": ""
+        }, 
+       {
+            "FormItem": {
+                "colon": "", 
+                "extra": "", 
+                "label": "", 
+                "labelCol": "", 
+                "type": "", 
+                "name": "", 
+                "id": "", 
+                "getFieldDecorator": {
+                    "rules": {
+                        "enum": "", 
+                        "len": "", 
+                        "max": "", 
+                        "message": "", 
+                        "min": "", 
+                        "pattern": "", 
+                        "required": "", 
+                        "transform": "", 
+                        "type": "", 
+                        "validator": "", 
+                        "whitespace": ""
+                    }
+                }
+            }
+        }
+    }
+}
+
+ 

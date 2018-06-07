@@ -1,0 +1,88 @@
+
+
+<!DOCTYPE	html	PUBLIC	"-//W3C//DTD	HTML	4.01	Transitional//EN"	"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta	http-equiv="Content-Type"	content="text/html;	charset=UTF-8">
+<meta	name="keywords"	content="表单名称">
+<meta	name="description"	content="">
+<!--	<meta	http-equiv="Content-Security-Policy"	content="upgrade-insecure-requests">	这个有点坑了	-->
+<title>formview 5</title>
+<!--		<script	src="https://unpkg.com/react@15.x/dist/react.js	"></script>
+			<script	src="https://unpkg.com/react-dom@15.x/dist/react-dom.js"></script>
+			<script	src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>	
+			<script	src="https://unpkg.com/moment/min/moment-with-locales.js"></script>	-->
+	
+	<script	src="/static/AntFormDesign/AntDesign/js/react.js	"></script>
+	<script	src="/static/AntFormDesign/AntDesign/js/react-dom.js"></script>
+	<script	src="/static/AntFormDesign/AntDesign/js/babel.min.js"></script>	
+	<script	src="/static/AntFormDesign/AntDesign/js/moment-with-locales.js"></script>
+	<!--	AntDesign 	-->
+<!-- <script src="https://cdn.bootcss.com/antd/3.5.2/antd.js"></script>
+	<link href="https://cdn.bootcss.com/antd/3.5.2/antd.css" rel="stylesheet"/> -->
+	<script	src="/static/AntFormDesign/AntDesign/js/antd.js"></script>
+	<link href="/static/AntFormDesign/AntDesign/css/antd.css" rel="stylesheet"/>
+	
+
+</head>
+<body	class="wallpaper">
+
+
+
+<h2>Ant	Design	-	一个	UI	设计语言</h2>
+		
+<h2>Ant	Design	-	测试  Button  </h2>
+	<div id="example"></div>	
+		<script	type="text/babel">
+		const	{	Button	}	=	antd;
+		ReactDOM.render( 
+			<div>
+			<Button ghost={false} type="default" id="primary">htmlAnt Button</Button>
+			</div>
+			,document.getElementById('example')
+		);
+		</script>		
+	
+<h2>Ant	Design anthtml </h2>
+	
+	<h2>  BasicForm1 </h2>
+
+	<div id="BasicForm1"></div>
+	
+	<script type="text/babel">
+		{{{str2html .antHtml}}}
+	</script>
+
+	<!-- {{{htmlquote .antHtmlStr}}}  返回来的有引号包裹-->
+
+<textarea>
+	{{{html2str .antHtmlStr}}}
+</textarea>
+<br />
+<!-- color:blue;text-align:center -->
+<textarea style="width: 1000px;height: 600px;margin-left:181px"> 
+	{{{ .antHtmlStr}}}
+</textarea>
+
+<br	/>
+datFormData	:
+<br	/>
+{{{.datFormData}}}	
+<br	/>
+<br	/>
+formData	:  (显示的是Json 但传到JS中需要转化为interface{})
+<br	/>
+{{{.formData}}}	
+<br	/>
+<br	/>
+<br	/>
+datParameterData	:
+<br	/>
+{{{.datParameterData}}}	
+<br	/>
+<br	/>
+parameterData	:
+{{{.parameterData}}}
+
+</body>
+</html>

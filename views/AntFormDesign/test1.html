@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>test1</title>
+	<!--		<script	src="https://unpkg.com/react@15.x/dist/react.js	"></script>
+	<script	src="https://unpkg.com/react-dom@15.x/dist/react-dom.js"></script>
+				<script	src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>	
+				<script	src="https://unpkg.com/moment/min/moment-with-locales.js"></script>	-->
+	
+	<script	src="/static/js/AntDesign/others/react.js	"></script>
+	<script	src="/static/js/AntDesign/others/react-dom.js"></script>
+	<script	src="/static/js/AntDesign/others/babel.min.js"></script>	
+	<script	src="/static/js/AntDesign/others/moment-with-locales.js"></script>
+	<!--	/static/js/AntDesign/others/	-->
+	<script	src="/static/js/AntDesign/dist/antd-with-locales.js"></script>
+	<link	href="/static/js/AntDesign/dist/antd.css"	rel="stylesheet"/>
+</head>
+<body>
+	
+	jsonVal:<br />
+			{{{.jsonVal}}}
+			
+		<br />					
+	str:<br />
+			{{{.str}}}
+			
+	<h2>  BasicForm1 </h2>
+
+	<div id="BasicForm1"></div>
+	
+	<script type="text/babel">
+		{{{str2html .antHtml}}}
+	</script>
+</body>
+</html>

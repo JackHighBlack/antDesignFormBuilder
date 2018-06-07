@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>test1</title>
+	
+	
+	<script	src="/static/js/AntDesign/others/react.js	"></script>
+	<script	src="/static/js/AntDesign/others/react-dom.js"></script>
+	<script	src="/static/js/AntDesign/others/babel.min.js"></script>	
+	<script	src="/static/js/AntDesign/others/moment-with-locales.js"></script>
+	
+	<script	src="/static/js/AntDesign/dist/antd-with-locales.js"></script>
+	<link	href="/static/js/AntDesign/dist/antd.css"	rel="stylesheet"/>
+</head>
+<body>
+	
+	
+	<h2>  BasicForm1 </h2>
+
+	<div id="BasicForm1"></div>
+	
+	<script type="text/babel">
+import { Form, Icon, Input, Button } from 'antd';
+const FormItem = Form.Item;
+
+function hasErrors(fieldsError) {
+  return Object.keys(fieldsError).some(field => fieldsError[field]);
+}
+
+class HorizontalLoginForm extends React.Component {
+  componentDidMount() {
+    // To disabled submit button at the beginning.
+    this.props.form.validateFields();
+  }
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        console.log('Received values of form: ', values);
+      }
+    });
+  }
+  render() {
+    const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = this.props.form;
+
+    //Only show error after a field is touched.
+const userNameError = isFieldTouched('userName') && getFieldError('userName'); 
+
+return (
+    
+  <Form layout="inline" onSubmit={this.handleSubmit}>
+ <FormItem 
+          validateStatus={userNameError ? 'error' : ''}
+          help={userNameError || ''}
+        >
+          {getFieldDecorator('userName', {
+            rules: [{Enum: 'enum'  Len:10 Max:100 Message: ' Please input your username! ' Min:6 Pattern:pattern Required:<true> Transform:function(value) => transformedValue:any Type: 'string'  Validator:function(rule, value, callback) Whitespace:<false> }],
+          })(
+            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="userName" />
+          )}
+        </FormItem>
+<FormItem>
+          <Button
+            type="primary"
+            htmlType="submit"
+            disabled={hasErrors(getFieldsError())}
+          >
+            Log in
+          </Button>
+        </FormItem>
+</Form>
+    );
+  }
+}
+
+const WrappedHorizontalLoginForm = Form.create()(HorizontalLoginForm);
+
+ReactDOM.render(<WrappedHorizontalLoginForm />, BasicForm1);
+	</script>
+</body>
+</html>
