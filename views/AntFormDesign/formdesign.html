@@ -111,7 +111,8 @@
 <div	id="allPropsContainer">
 <ul	id="allProps">
 	<!--	<li	class="num"	id="liPos">1.</li>	-->
-	<li	id="plabel">
+	
+	<!-- <li	id="plabel">
 		<label	class="desc"	for="lbl">字段标签
 		</label>
 		<textarea	id="lbl"	name="LBL"	class="xxl"	rows="2"></textarea>
@@ -121,7 +122,7 @@
 		<label	class="desc"	for="Aid">字段id
 		</label>
 		<textarea	id="Aid"	name="Aid"	class="xxl"	rows="2"></textarea>
-	</li>
+	</li> -->
 
 
 	
@@ -229,7 +230,9 @@
 			(?)
 		</a>
 	</label>
-	<input id="FormItemtype" name="FormItemtype" class="xxl">
+	
+	<textarea clos=",50" rows="5" warp="virtual" id="FormItemtype" name="FormItemtype" class="xxl">
+	</textarea>
 </li>
 
 
@@ -939,12 +942,12 @@
 	<fieldset>
 		<legend>设置</legend>
 		<ul>
-		<li	id="popt_required">
+<!-- 		<li	id="popt_required">
 		<input	id="reqd"	name="REQD"	type="checkbox"	value="1"	/>
 		<label	for="reqd">必须输入</label>
 		<a	href="#"	class="help	hide"	title="关于必须输入"	rel="强制填表人该字段必须输入，否则将不能提交表单。<a	href='#'	class='video	help'	videosrc='images/videos/2-1.mp4'><i	class='iconfont	icon	green2'	>&#xe64d;</i>观看视频说明</a>">(?)</a>
-		</li>
-		<li	id="popt_unique">
+		</li> -->
+		<!-- <li	id="popt_unique">
 		<input	id="uniq"	name="UNIQ"	type="checkbox"	value="1"	/>	
 		<label	for="uniq">不许重复</label>		
 		<a	href="#"	class="help"	title="关于不许重复"	rel="用于保证字段输入值的唯一性，适用于如手机号、QQ号等需要保证唯一性的输入值。">(?)</a>
@@ -1005,7 +1008,7 @@
 			</div>
 		</div>
 	</fieldset>
-	</li>
+	</li> -->
 	
 	<!--	为了尽早简单，此功能仅在支持关系的版本中显示
 	
@@ -1043,7 +1046,7 @@
 		-->
 
 	
-	
+	<!-- 
 	<li	id="pdefval_text">
 		<label	class="desc"	for="defval_text">默认值
 			<a	href="#"	class="help	hide"	title="关于默认值"	rel="在用户访问表单时，此值将作为默认值显示在输入框中。如果不需要默认值，请将此处设置为空。">(?)</a>
@@ -1109,7 +1112,7 @@
 		<select	id="defval_province"	name="DEF_PROVINCE"	class="s"></select>
 		<select	id="defval_city"	name="DEF_CITY"	class="s"><option>市</option></select>
 		<select	id="defval_zip"	name="DEF_ZIP"	class="s"><option>区/县</option></select>
-	</li>
+	</li>-->
 
 	<li	id="psection"	class="clear">
 		<label	class="desc"	for="secdesc">分隔描述
@@ -1122,7 +1125,7 @@
 			<a	href="#"	class="help	hide"	title="关于HTML内容"	rel="如果您需要在表单上显示HTML内容，只支持显示型HTML（如p,a,div等），不支持输入型HTML（如input,select,radio等），请在此处输入相应HTML代码。<a	href='help/formbuilder.html#t31'	target='_blank'>如何插入图片和链接？</a>">(?)</a>
 		</label>
 		<textarea	class="xxl"	rows="5"	id="html"	name="HTML"></textarea>
-	</li>
+	</li> 
 	
 	<li	id="pinstruct"	class="clear">
 		<label	class="desc"	for="instruct">字段说明	
@@ -1132,7 +1135,7 @@
 	</li>
 	<li	class="clear	noheight"></li>
 	
-	<li	id="playout"	class="bggray">
+	<!-- <li	id="playout"	class="bggray">
 		<label	class="desc"	for="layout">字段宽度（仅填表时可见）
 			<a	href="#"	class="help	hide"	title="字段宽度"	rel="让多个字段并列显示在同一行（仅适用于PC端）。<a	href='#'	class='video	help'	videosrc='images/videos/2-1-2.mp4'><i	class='iconfont	icon	green2'	>&#xe64d;</i>观看视频说明</a><i>注意：设置的宽度在设计模式不可见，仅在查看表单时才能看到效果。</i>">(?)</a>
 		</label>
@@ -1142,19 +1145,19 @@
 		<option	value="third">整行宽度的1/3</option>
 		<option	value="quarter">整行宽度的1/4</option>
 		</select>
-	</li>
-	<li	id="pexprop"	class="hide">
+	</li> -->
+	<!--<li	id="pexprop"	class="hide">
 		<label	class="desc"	for="css">扩展属性</label>
 		<input	id="exprop"	class="xxl"	type="text"	name="EX"	value=""	maxlength="1024"/>
-		<!--
+		
 			20160821	by	xiangjuntao
 			1.字段的扩展属性不对外开放，仅内部人员使用；
 			2.扩展属性是一个JSON对象
 			3.目前支持的JSON属性为:{matfld:"F1,F2"}
 			matfld:关联查询时下拉框中可以带出的其它字段名；
 			
-			-->
-	</li>
+			
+	</li>-->
 	<!--	
 	<li	style="overflow:hidden;padding:10px	0px	10px	20px;">
 		<a	href="#"	class="btn	btn-blue	icon-plus	left"	title="复制当前字段"	id="btnDup">复制1</a>

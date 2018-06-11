@@ -21,8 +21,20 @@ type Type struct {
 	Type string `json:"type"`
 	Attr Attr   `json:"attr"`
 }
-type Attr struct {
-	Prefix string `json:"prefix"`
+type Attr struct { //需要将会遇到的所有Attr加入到系统中,解析时,才能获取到值
+	Prefix      string `json:"prefix"`
+	Placeholder string `json:"placeholder"`
+
+	Min string `json:"min"`
+	Max string `json:"max"`
+	//DefaultValue string `json:"defaultValue"`
+	AllowClear string `json:"allowClear"`
+	Character  string `json:"character"` //character LJJ:reflect.Value.Interface: cannot return value obtained from unexported field or method
+
+	Vertical           string `json:"vertical"`
+	Range              string `json:"range"`
+	Step               string `json:"step"`
+	VerticalRangestep1 string `json:"vertical1range1step1"`
 }
 
 type GetFieldDecorator struct {

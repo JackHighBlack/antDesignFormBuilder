@@ -1,0 +1,16 @@
+true 需要写成 <true>   //golang里进行替换	 <true>   =<< , >> 	   
+
+{"type":"Input","attr":{"prefix":"{<Icon type=\"login\" style={{ color: 'rgba(0,0,0,.25)' }} />}"}}
+{"type":"Input","attr":{"prefix":"{<Icon type=\"login\" style={{ color: 'rgba(0,0,0,.25)' }} />}","placeholder":"\"placeholder\""}}
+
+{"type":"InputNumber","attr":{"min":"<<1>>","max":"<<10>>"  }} //golang里进行替换
+       <InputNumber min={1} max={10}  />
+
+{"type":"Rate","attr":{"allowClear":"<<<false>>>","character":"\"好\""}}
+<Rate allowClear={false} character="好"  /> //先 <<<false>>> 变成 {<false>} 再变成  {false} 
+		   
+{"type":"Slider","attr":{"step":"<<10>>","range":"<<<true>>>"}}
+<Slider vertical range step={10} defaultValue={[20, 50]} />
+
+<Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}  placeholder="userName4" />
+rules: [{ message: ' Please input your username! ',required:true,}],

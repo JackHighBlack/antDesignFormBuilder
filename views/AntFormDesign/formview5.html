@@ -50,19 +50,23 @@
 	<div id="BasicForm1"></div>
 	
 	<script type="text/babel">
+		const { InputNumber,Rate,Slider } = antd;
 		{{{str2html .antHtml}}}
 	</script>
 
-	<!-- {{{htmlquote .antHtmlStr}}}  返回来的有引号包裹-->
 
-<textarea>
-	{{{html2str .antHtmlStr}}}
-</textarea>
-<br />
 <!-- color:blue;text-align:center -->
+<h2>.antHtmlStr</h2>
 <textarea style="width: 1000px;height: 600px;margin-left:181px"> 
 	{{{ .antHtmlStr}}}
 </textarea>
+<br />
+	<!-- {{{htmlquote .antHtmlStr}}}  返回来的有引号包裹-->
+<h2>html2str .antHtmlStr</h2>
+<textarea style="width: 1000px;height: 200px;margin-left:181px"> 
+	{{{html2str .antHtmlStr}}}
+</textarea>
+<br />
 
 <br	/>
 datFormData	:
@@ -78,11 +82,15 @@ formData	:  (显示的是Json 但传到JS中需要转化为interface{})
 <br	/>
 datParameterData	:
 <br	/>
-{{{.datParameterData}}}	
+<textarea style="width: 1000px;height: 150px;margin-left:181px"> 
+	{{{.datParameterData}}}
+</textarea>
 <br	/>
 <br	/>
 parameterData	:
+<textarea style="width: 1000px;height: 150px;margin-left:181px"> 
 {{{.parameterData}}}
+</textarea>
 
 </body>
 </html>

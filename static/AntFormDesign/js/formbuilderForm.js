@@ -81,7 +81,7 @@ DEFFLD = {
 	  antIcon: {  /*  text  .goal 就是数据*/
         //html: '<label class="desc"><span class="req hide"> *</span></label> <div class="content textcontent"><input type="text" disabled="disabled" maxlength="255" class="input" /><i class="iconfont qrinput hide">&#xe67d;</i></div>',
         html: '<label class="desc"><span class="req hide"> *</span></label><i	class="iconfont">&#xe670;</i><i class="iconfont qrinput hide">&#xe67d;</i>',
-		json: '({"LBL":"antIcon","TYP":"antIcon","FLDSZ":"m","REQD":"0","UNIQ":"0","SCU":"pub","Aid":"antIcon","Content":"antButton"})',
+		json: '{"LBL":"antIcon","TYP":"antIcon","FLDSZ":"m","REQD":"0","UNIQ":"0","SCU":"pub","Aid":"antIcon","Content":"antButton"}',
         //htmlAnt: '<div><Button  typeAnt="" htmlType="" icon="" shape="" size="" loading="" onClick="">htmlAnt Button</Button></div>',
 		htmlAnt: '<Icon type="question"></Icon>',
 		holder: '<li class="field prefocus" style="height:71px;width:97%"></li>'
@@ -115,14 +115,15 @@ DEFFLD = {
 		
     },
 	antFormItem: {  /*  text  .goal 就是数据*/
-       html: '<label class="desc"><span class="req hide"> * </span></label><div class="content"><span><input type="checkbox" disabled="disabled"><label>选项 1</label></span></div>',
+       html: '<label class="desc"><span class="req hide"> * </span></label><div class="content"><span><input type="checkbox" disabled="disabled"><label>userName </label></span></div>',
 		//json:   '({"LBL":"antFormItem","TYP":"antFormItem",{"LBL":"antFormItem","TYP":"antFormItem","FLDSZ":"m","REQD":"0","UNIQ":"0","SCU":"pub","Aid":"antFormItem","Content":"antFormItem",  })',
-        //rule 是全的 json: '({"Aid":"Aid123","LBL":"antFormItem","TYP":"antFormItem","FormItem":{"colon":"colon","extra":"extra","label":"label","labelCol":"labelCol","type":{"type":"input","attr":{"prefix":"{<Icon type=\\"user\\" style=\'{{ color: \'rgba(0,0,0,.25)\' }}"}},"name":"userName","id":"id1","getFieldDecorator":{"rules":{"enum":" \'enum\' ","len":"10","max":"100","message":" \' Please input your username! \'","min":"6","pattern":"pattern","required":"<true>","transform":"function(value) => transformedValue:any","type":" \'string\' ","validator":"function(rule, value, callback)","whitespace":"<false>"}}}})',
-		json: '({"Aid":"Aid123","LBL":"antFormItem","TYP":"antFormItem","FormItem":{"colon":"colon","extra":"extra","label":"label","labelCol":"labelCol","type":{"type":"input","attr":{"prefix":"{<Icon type=\\"user\\" style=\'{{ color: \'rgba(0,0,0,.25)\' }}"}},"name":"userName","id":"id1","getFieldDecorator":{"rules":{"message":" \' Please input your username! \'","required":"<true>",}}}})',
+        //rule 是全的 json: '({"Aid":"Aid123","LBL":"antFormItem","TYP":"antFormItem","FormItem":{"colon":"colon","extra":"extra","label":"label","labelCol":"labelCol","type":{"type":"Input","attr":{"prefix":"{<Icon type=\\"user\\" style=\'{{ color: \'rgba(0,0,0,.25)\' }}"}},"name":"userName","id":"id1","getFieldDecorator":{"rules":{"enum":" \'enum\' ","len":"10","max":"100","message":" \' Please input your username! \'","min":"6","pattern":"pattern","required":"<true>","transform":"function(value) => transformedValue:any","type":" \'string\' ","validator":"function(rule, value, callback)","whitespace":"<false>"}}}})',
+		json: '{"Aid":"Aid123","LBL":"antFormItem ","TYP":"antFormItem","FormItem":{"colon":"colon","extra":"extra","label":"label","labelCol":"labelCol","type":{"type":"Input","attr":{"prefix":"\{<Icon type=\\"user\\" style={{ color: \'rgba(0,0,0,.25)\' }}  />\}","placeholder":"\\"placeholder123\\""}},"name":"userName","id":"id1","getFieldDecorator":{"rules":{"message":" \' Please input your username! \'","required":"<true>"}}}}',
 		htmlAnt: '',
 		holder: '<li class="field prefocus" style="height:71px;width:97%"></li>'
 		
     },
+
 };
 (function () {
     $.formatPrice = function (g, f, e, d, a, b) {
@@ -572,7 +573,7 @@ function showProperties(c) {
 			'pDropdownItemlist',
         ],
 		antFormItem: [
-            'ptype',
+  /*           'ptype',
             'pfldsize',
             'poptions',
             'popt_required',
@@ -584,8 +585,8 @@ function showProperties(c) {
             'pconfine1',
             'pconfine2',
 			'playout',
-			'pDropdownItemlist',
-			
+			'pDropdownItemlist',*/
+			 
 			'pFormItemcolon',
 			'pFormItemextra',
 			'pFormItemlabel',
@@ -878,7 +879,7 @@ function isOneCol(a) {
     }
 }
 function setDefFieldDom(li, type, index, srcJSON) {
-    var newJSON = eval(DEFFLD[type].json);
+    var newJSON = JSON.parse(DEFFLD[type].json);
 	//var newJSON = $.trim(DEFFLD[type].json);
 	var newAnt = $.trim(DEFFLD[type].htmlAnt);
     $.mergJSON(srcJSON, newJSON);
@@ -893,7 +894,7 @@ function setDefFieldDom(li, type, index, srcJSON) {
     resizeHandle(li)
 }
 function addDefFieldDom(c, type, index, srcJSON) {
-    var newJSON = eval(DEFFLD[type].json);
+    var newJSON = JSON.parse(DEFFLD[type].json);
     $.mergJSON(srcJSON, newJSON);
     F.splice(index, 0, newJSON);
     createField(c, newJSON);
@@ -1644,7 +1645,7 @@ $('#FormItemwrapperCol').bind({
 	change: uFormItemwrapperCol
 });
 var uFormItemtype = function() {
-	F[IDX].FormItem.type = $.trim($(this).val());
+	F[IDX].FormItem.type = JSON.parse($.trim($(this).val()));
 	CHANGED = true
 };
 $('#FormItemtype').bind({
