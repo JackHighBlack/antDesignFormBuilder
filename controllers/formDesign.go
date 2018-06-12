@@ -431,13 +431,25 @@ class HorizontalLoginForm extends React.Component {
 	antHtml = append(antHtml, str1)
 	str2 = `return (
     
-  <Form layout="vertical" onSubmit={this.handleSubmit}>` //inline(Slide显示不完全) horizontal vertical
+  <Form onSubmit={this.handleSubmit}>` //默认 layout="horizontal" inline(Slide显示就一个点) horizontal vertical(Row 就不见了)
 	antHtmlWithBJ = append(antHtmlWithBJ, "str2"+str2)
 	antHtml = append(antHtml, str2)
 	//	fmt.Println(itemNames)
 	// 先不处理   <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />
 	for k, v := range itemNames {
+		//		if (k == 0) || (k%4 == 0) {
+		//			str3 = str3 + `
+		//		<Row gutter={24}>`
+
+		//		}
+
+		if k == 0 {
+			str3 = str3 + `
+				<Row gutter={24}>`
+
+		}
 		str3 = str3 + fmt.Sprintf(`
+	 <Col span={8}>
 		<FormItem
           validateStatus={%sError ? 'error' : ''}
           help={%sError || ''}
@@ -447,10 +459,24 @@ class HorizontalLoginForm extends React.Component {
           })(
            <%s %s />
           )}
-        </FormItem>`, v, v, v, rules[k], atrTypes[k], typeAttrs[k])
+        </FormItem>
+           </Col>`, v, v, v, rules[k], atrTypes[k], typeAttrs[k])
+		//		if k%4 == 3 {
+		//			str3 = str3 + `
+		//     </Row>`
+		//		}
 
 	}
 
+	//	fmt.Println(` strings.LastIndex(str3, "</Row>")`, strings.LastIndex(str3, "</Row>"))
+	//	fmt.Println(`strings.Count(str3,"")-1 :`, strings.Count(str3, "")-1)
+	//	if strings.Count(str3, "")-1-strings.LastIndex(str3, "</Row>") > 4 {
+	//		str3 = str3 + `
+	//     </Row>`
+
+	//	}
+	str3 = str3 + `
+	   </Row>`
 	antHtmlWithBJ = append(antHtmlWithBJ, "str3"+str3)
 	antHtml = append(antHtml, str3)
 
