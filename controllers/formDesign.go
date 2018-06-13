@@ -322,6 +322,9 @@ func AnalysisJson(jsonVal string) (antStr string, err error) {
 	var typeAttr string
 	var typeAttrs []string
 
+	var typeInner string
+	var typeInners []string
+
 	var str0, str1, str2, str3, str4, str5 string
 	str0 = `
 const { Form, Icon, Input, Button } = antd;
@@ -332,9 +335,16 @@ function hasErrors(fieldsError) {
 }
 
 class HorizontalLoginForm extends React.Component {
+
+
   componentDidMount() {
     // To disabled submit button at the beginning.
     this.props.form.validateFields();
+  }
+
+ state = {
+    targetKeys,
+    selectedKeys: ['1','2'],
   }
   handleSubmit = (e) => {
     e.preventDefault();
@@ -344,7 +354,24 @@ class HorizontalLoginForm extends React.Component {
       }
     });
   }
+
+  handleChange = (nextTargetKeys, direction, moveKeys) => {
+    this.setState({ targetKeys: nextTargetKeys });
+
+    console.log('targetKeys: ', targetKeys);
+    console.log('direction: ', direction);
+    console.log('moveKeys: ', moveKeys);
+  }
+
+  handleSelectChange = (sourceSelectedKeys, targetSelectedKeys) => {
+    this.setState({ selectedKeys: [...sourceSelectedKeys, ...targetSelectedKeys] });
+
+    console.log('sourceSelectedKeys: ', sourceSelectedKeys);
+    console.log('targetSelectedKeys: ', targetSelectedKeys);
+  }
+
   render() {
+	const state = this.state;
     const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = this.props.form;
 
     //Only show error after a field is touched.`
@@ -366,6 +393,9 @@ class HorizontalLoginForm extends React.Component {
 
 		atrType = v.FormItem.Type.Type
 		atrTypes = append(atrTypes, atrType)
+
+		typeInner = v.FormItem.Type.Inner
+		typeInners = append(typeInners, typeInner)
 		//		for k2, v2 := range v.GetFieldDecorator.Rules {
 		//			rules = ""
 		//		}
@@ -448,8 +478,26 @@ class HorizontalLoginForm extends React.Component {
 				<Row gutter={24}>`
 
 		}
-		str3 = str3 + fmt.Sprintf(`
-	 <Col span={8}>
+		if typeInners[k] != "" {
+			fmt.Println("itemNames.Atrr.Inner ", k, " : ", typeInners[k])
+			str3 = str3 + fmt.Sprintf(`
+	 <Col span={6}>
+		<FormItem
+          validateStatus={%sError ? 'error' : ''}
+          help={%sError || ''}
+        >
+          {getFieldDecorator('%s', {
+            rules: [{ %s}],
+          })(
+           <%s %s >
+			%s
+ 		  </%s>
+          )}
+        </FormItem>
+           </Col>`, v, v, v, rules[k], atrTypes[k], typeAttrs[k], typeInners[k], atrTypes[k])
+		} else {
+			str3 = str3 + fmt.Sprintf(`
+	 <Col span={6}>
 		<FormItem
           validateStatus={%sError ? 'error' : ''}
           help={%sError || ''}
@@ -461,6 +509,7 @@ class HorizontalLoginForm extends React.Component {
           )}
         </FormItem>
            </Col>`, v, v, v, rules[k], atrTypes[k], typeAttrs[k])
+		}
 		//		if k%4 == 3 {
 		//			str3 = str3 + `
 		//     </Row>`
@@ -518,6 +567,9 @@ ReactDOM.render(<WrappedHorizontalLoginForm />,
 
 	strAntHtml = strings.Replace(strAntHtml, `=<<`, "={", -1)
 	strAntHtml = strings.Replace(strAntHtml, `>> `, "} ", -1)
+
+	strAntHtml = strings.Replace(strAntHtml, `<<`, "{", -1)
+	strAntHtml = strings.Replace(strAntHtml, `>>`, "}", -1)
 
 	return strAntHtml, nil
 

@@ -18,8 +18,9 @@ type FormItem struct {
 	GetFieldDecorator GetFieldDecorator `json:"getFieldDecorator"`
 }
 type Type struct {
-	Type string `json:"type"`
-	Attr Attr   `json:"attr"`
+	Type  string `json:"type"`
+	Attr  Attr   `json:"attr"`
+	Inner string `json:"inner"`
 }
 type Attr struct { //需要将会遇到的所有Attr加入到系统中,解析时,才能获取到值
 	Prefix      string `json:"prefix"`
@@ -31,10 +32,31 @@ type Attr struct { //需要将会遇到的所有Attr加入到系统中,解析时
 	AllowClear string `json:"allowClear"`
 	Character  string `json:"character"` //character LJJ:reflect.Value.Interface: cannot return value obtained from unexported field or method
 
-	Vertical           string `json:"vertical"`
-	Range              string `json:"range"`
-	Step               string `json:"step"`
-	VerticalRangestep1 string `json:"vertical1range1step1"`
+	Vertical string `json:"vertical"`
+	Range    string `json:"range"`
+	Step     string `json:"step"`
+	Options  string `json:"options"` //CheckboxGroup
+
+	Suggestions string `json:"suggestions"` //Mention
+
+	Style string `json:"style"` //TreeSelect
+
+	TreeData            string `json:"treeData"`            //TreeSelect
+	TreeCheckable       string `json:"treeCheckable"`       //TreeSelect
+	ShowCheckedStrategy string `json:"showCheckedStrategy"` //TreeSelect
+	SearchPlaceholder   string `json:"searchPlaceholder"`   //TreeSelect
+
+	DataSource   string `json:"dataSource"`   //Transfer
+	Titles       string `json:"titles"`       //Transfer
+	TargetKeys   string `json:"targetKeys"`   //Transfer
+	SelectedKeys string `json:"selectedKeys"` //Transfer
+	//SearchPlaceholder string `json:"searchPlaceholder"` //Transfer
+	OnChange       string `json:"onChange"`       //Transfer
+	OnSelectChange string `json:"onSelectChange"` //Transfer
+	Render         string `json:"render"`         //Transfer
+
+	ListType string `json:"listType"` //Upload
+
 }
 
 type GetFieldDecorator struct {

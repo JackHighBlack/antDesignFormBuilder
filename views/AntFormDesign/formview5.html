@@ -1,4 +1,4 @@
-
+﻿
 
 <!DOCTYPE	html	PUBLIC	"-//W3C//DTD	HTML	4.01	Transitional//EN"	"http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -51,6 +51,63 @@
 	
 	<script type="text/babel">
 		const { Row,Col,InputNumber,Rate,Slider } = antd;
+
+		const { DatePicker } = antd;
+		const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
+		
+		const { Checkbox,Mention,Radio,Switch,TreeSelect } = antd;
+		const CheckboxGroup = Checkbox.Group;
+		const RadioGroup = Radio.Group;
+		
+		const { TimePicker } = antd;
+		const SHOW_PARENT = TreeSelect.SHOW_PARENT;
+		
+		const { Transfer,Upload } = antd;
+
+		const treeData = [{
+			  label: 'Node1',
+			  value: '0-0',
+			  key: '0-0',
+			  children: [{
+				label: 'Child Node1',
+				value: '0-0-0',
+				key: '0-0-0',
+			  }],
+			}, {
+			  label: 'Node2',
+			  value: '0-1',
+			  key: '0-1',
+			  children: [{
+				label: 'Child Node3',
+				value: '0-1-0',
+				key: '0-1-0',
+			  }, {
+				label: 'Child Node4',
+				value: '0-1-1',
+				key: '0-1-1',
+			  }, {
+				label: 'Child Node5',
+				value: '0-1-2',
+				key: '0-1-2',
+			  }],
+			}];
+			
+			const mockData = [{key:'0',title:'content0',description:'description of content0',disabled:false},
+							{key:'1',title:'content1',description:'description of content1',disabled:true},
+							{key:'2',title:'content2',description:'description of content2',disabled:false},
+							{key:'3',title:'content3',description:'description of content3',disabled:true},
+							{key:'4',title:'content4',description:'description of content4',disabled:false},
+							{key:'5',title:'content5',description:'description of content5',disabled:false},
+							{key:'6',title:'content6',description:'description of content6',disabled:true},
+							{key:'7',title:'content7',description:'description of content7',disabled:false},
+							{key:'8',title:'content8',description:'description of content8',disabled:false},
+							{key:'9',title:'content9',description:'description of content9',disabled:false}];
+							
+			//const targetKeys = ['0','2','4']	
+			const targetKeys = []			
+
+
+
 		{{{str2html .antHtml}}}
 	</script>
 

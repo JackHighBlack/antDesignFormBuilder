@@ -1,0 +1,83 @@
+//true写成 <true>     {true}写成<<<true>>>    {1}写成<<1>>   //golang里进行替换
+//其中的转义,JS中字符串要写成 {"type":"Rate","attr":{"allowClear":"<<<false>>>","character":"\\"好\\""}} 而且单引号也要转义 \' \'
+//           在输入框中{"type":"Rate","attr":{"allowClear":"<<<false>>>","character":"\"好\""}} 而且单引号不用转义
+
+{"type":"Input","attr":{"prefix":"{<Icon type=\"login\" style={{ color: 'rgba(0,0,0,.25)' }} />}","placeholder":"\"placeholder\""}}
+<Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}  placeholder="userName4" />
+
+{"type":"InputNumber","attr":{"min":"<<1>>","max":"<<10>>"  }}   
+ <InputNumber min={1} max={10}  />
+
+{"type":"Rate","attr":{"allowClear":"<<<false>>>","character":"\"好\""}}
+<Rate allowClear={false} character="好"  />
+   
+   /// 
+{"type":"Slider","attr":{"step":"<<10>>","range":"<<<true>>>"}}
+<Slider  range step={10} defaultValue={[20, 50]} />
+
+
+
+{"type":"DatePicker"}
+    <DatePicker onChange={onChange} />
+    <br />
+{"type":"MonthPicker" ,"attr":{"placeholder":"\"Select month\""}}
+    <MonthPicker onChange={onChange} placeholder="Select month" />
+    <br />
+{"type":"RangePicker"}
+    <RangePicker onChange={onChange} />
+    <br />
+{"type":"WeekPicker" ,"attr":{"placeholder":"\"Select week\""}}
+    <WeekPicker onChange={onChange} placeholder="Select week" />
+
+{"type":"CheckboxGroup" ,"attr":{"options":"<<['Apple', 'Pear', 'Orange']>>"}}
+<CheckboxGroup options={['Apple', 'Pear', 'Orange']} />
+
+{"type":"Mention" ,"attr":{"suggestions":"<<['afc163', 'benjycui', 'yiminghe', 'RaoHai', '中文', 'にほんご']>>"}}
+<Mention suggestions={['afc163', 'benjycui', 'yiminghe', 'RaoHai', '中文', 'にほんご']} />
+getMentions获取当前 contentState 中提到的人的列表Function(contentState: ContentState): string[]
+toContentState把字符串转成 ContentStateFunction(value: string): ContentState
+toString把 ContentState 转成字符串Function(contentState: ContentState): string
+
+{"type":"RadioGroup" ,"attr":{"options":"<<['Apple', 'Pear', 'Orange']>>"}}
+
+{"type":"RadioGroup" ,"attr":{"options":"<<[<<label:'Apple1',value:'Apple'>>,<<label:'Pear2',value:'Pear'>>,<<label:'Orange3',value:'Orange'>>,]>>"}}
+<RadioGroup options={plainOptions} onChange={this.onChange1} value={this.state.value1} />
+
+{"type":"Switch"}
+
+// JSX html标签中也可以直接用相同节点名的Json赋值
+{"type":"TreeSelect","attr":{"treeData":"<<treeData>>","style":"<<<<width: 300,>>>>"}} // showCheckedStrategy  SHOW_PARENT  (const SHOW_PARENT = TreeSelect.SHOW_PARENT;)如果选择母节点,就会只是显示出来母节点,并传母节点的值(母节点的子节点全选了,就只是显示出来母节点,并传母节点的值)
+{"type":"TreeSelect","attr":{"style":"<<<<width: 300,>>>>","treeData":"<<treeData>>","treeCheckable": "<<<true>>>", "showCheckedStrategy": "<<SHOW_PARENT>>", "searchPlaceholder": "'Please select'"}}
+{"type":"TreeSelect","attr":{"style":"<<<<width: 300,>>>>","treeData":"<<treeData>>","treeCheckable": "<<<true>>>", "searchPlaceholder": "'Please select'"}}
+treeSelect style={{ width: 300 }} value={this.state.value} dropdownStyle={{ maxHeight: 400, overflow: 'auto' }} treeData={treeData} placeholder="Please select" treeDefaultExpandAll onChange={this.onChange} />
+treeCheckable: true,
+showCheckedStrategy: SHOW_PARENT,
+searchPlaceholder: 'Please select',
+  style: {
+width: 300,
+  },
+const treeData = [{ label: 'Node1', value: '0-0', key: '0-0', children: [{ label: 'Child Node1', value: '0-0-0', key: '0-0-0', }], }, { label: 'Node2', value: '0-1', key: '0-1', children: [{ label: 'Child Node3', value: '0-1-0', key: '0-1-0', }, { label: 'Child Node4', value: '0-1-1', key: '0-1-1', }, { label: 'Child Node5', value: '0-1-2', key: '0-1-2', }], }];
+
+{"type":"TimePicker"}
+<TimePicker onChange={onChange} defaultOpenValue={moment('00:00:00', 'HH:mm:ss')} />,
+ 
+ 
+{"type":"Transfer","attr":{"render":"<<item => item.title>>","dataSource":"<<mockData>>","titles":"<<['Source', 'Target']>>","targetKeys": "<<state.targetKeys>>","selectedKeys": "<<state.selectedKeys>>", "searchPlaceholder": "'Please select'","onSelectChange":"<<this.handleSelectChange>>","onChange":"<<this.handleChange>>"}} 
+<Transfer dataSource={mockData} titles={['Source', 'Target']} targetKeys={state.targetKeys} selectedKeys={state.selectedKeys} onChange={this.handleChange} onSelectChange={this.handleSelectChange} onScroll={this.handleScroll} render={item => item.title}       />
+   //targetKeys={state.targetKeys} 改成 targetKeys={targetKeys} 必须是state.targetKeys
+   //selectedKeys={state.selectedKeys}     // 选中的选项
+   //onSelectChange={this.handleSelectChange}  //选择时,调用的方法
+   //onChange={this.handleChange}  // 点击左边 右边  key是区分 1 和'1'   key: i.toString(),
+   
+{"type":"Upload","inner":" <Button><Icon type=\"upload\" /> Click to Upload</Button>","attr":{"listType":"'picture'"}}	
+
+
+ 
+ 
+
+
+
+
+
+
+
