@@ -70,6 +70,18 @@ const treeData = [{ label: 'Node1', value: '0-0', key: '0-0', children: [{ label
    //onChange={this.handleChange}  // 点击左边 右边  key是区分 1 和'1'   key: i.toString(),
    
 {"type":"Upload","inner":" <Button><Icon type=\"upload\" /> Click to Upload</Button>","attr":{"listType":"'picture'"}}	
+<Upload listType='picture'  >
+	<Button><Icon type="upload" /> Click to Upload</Button>
+ </Upload>
+
+
+{"type":"Select","inner":" <Option value=\"jack\">Jack</Option><Option value=\"lucy\">Lucy</Option><Option value=\"disabled\" disabled>Disabled</Option><Option value=\"Yiminghe\">yiminghe</Option>","attr":{"style":"<<<<width: 120 >>>>"}}
+<Select  style={{ width: 120 }} onChange={handleChange}>
+      <Option value="jack">Jack</Option>
+      <Option value="lucy">Lucy</Option>
+      <Option value="disabled" disabled>Disabled</Option>
+      <Option value="Yiminghe">yiminghe</Option>
+</Select>	
 
 
  
